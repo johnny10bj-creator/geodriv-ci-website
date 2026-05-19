@@ -11,59 +11,61 @@
         /* ── Theme Variables ── */
         :root,
         [data-theme="dark"] {
-            --bg-primary: #0a0d14;
-            --bg-elevated: #0f131c;
-            --bg-surface: #161b28;
-            --bg-hover: #1e2536;
-            --bg-inset: #0d111c;
-            --text-primary: #e8eaed;
-            --text-secondary: rgba(255,255,255,0.65);
-            --text-muted: rgba(255,255,255,0.40);
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --accent-glow: rgba(59,130,246,0.15);
-            --accent-subtle: rgba(59,130,246,0.10);
-            --border: rgba(255,255,255,0.07);
-            --border-light: rgba(255,255,255,0.04);
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --internal-badge: #f59e0b;
-            --internal-badge-bg: rgba(245,158,11,0.12);
-            --public-badge: #3b82f6;
-            --public-badge-bg: rgba(59,130,246,0.12);
-            --scrollbar-thumb: rgba(255,255,255,0.10);
-            --scrollbar-track: transparent;
-            --shadow: 0 4px 24px rgba(0,0,0,0.40);
-            --shadow-sm: 0 1px 4px rgba(0,0,0,0.30);
-        }
-
-        [data-theme="light"] {
-            --bg-primary: #f8fafc;
-            --bg-elevated: #ffffff;
-            --bg-surface: #f1f5f9;
-            --bg-hover: #e2e8f0;
-            --bg-inset: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: rgba(0,0,0,0.55);
-            --text-muted: rgba(0,0,0,0.35);
+            --bg-primary: #0b0b10;
+            --bg-elevated: #13151f;
+            --bg-surface: #1a1d2d;
+            --bg-hover: #222639;
+            --bg-inset: #0d0f18;
+            --text-primary: #f8fafc;
+            --text-secondary: rgba(248,250,252,0.60);
+            --text-muted: rgba(248,250,252,0.33);
             --accent: #3b82f6;
             --accent-hover: #2563eb;
             --accent-glow: rgba(59,130,246,0.12);
             --accent-subtle: rgba(59,130,246,0.06);
-            --border: rgba(0,0,0,0.08);
-            --border-light: rgba(0,0,0,0.04);
-            --success: #059669;
+            --border: rgba(255,255,255,0.06);
+            --border-light: rgba(255,255,255,0.03);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --internal-badge: #f59e0b;
+            --internal-badge-bg: rgba(245,158,11,0.10);
+            --public-badge: #60a5fa;
+            --public-badge-bg: rgba(96,165,250,0.10);
+            --scrollbar-thumb: rgba(255,255,255,0.08);
+            --scrollbar-track: transparent;
+            --shadow: 0 4px 32px rgba(0,0,0,0.55);
+            --shadow-sm: 0 1px 6px rgba(0,0,0,0.40);
+            --card-shadow: 0 0 0 1px rgba(59,130,246,0.04), 0 24px 80px rgba(0,0,0,0.55);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f1f5f9;
+            --bg-elevated: #ffffff;
+            --bg-surface: #e2e8f0;
+            --bg-hover: #cbd5e1;
+            --bg-inset: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: rgba(15,23,42,0.55);
+            --text-muted: rgba(15,23,42,0.33);
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-glow: rgba(37,99,235,0.10);
+            --accent-subtle: rgba(37,99,235,0.05);
+            --border: rgba(0,0,0,0.07);
+            --border-light: rgba(0,0,0,0.03);
+            --success: #16a34a;
             --warning: #d97706;
             --danger: #dc2626;
             --internal-badge: #d97706;
-            --internal-badge-bg: rgba(217,119,6,0.10);
+            --internal-badge-bg: rgba(217,119,6,0.09);
             --public-badge: #2563eb;
-            --public-badge-bg: rgba(37,99,235,0.10);
-            --scrollbar-thumb: rgba(0,0,0,0.12);
+            --public-badge-bg: rgba(37,99,235,0.09);
+            --scrollbar-thumb: rgba(0,0,0,0.10);
             --scrollbar-track: transparent;
-            --shadow: 0 4px 24px rgba(0,0,0,0.08);
-            --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --shadow-sm: 0 1px 4px rgba(0,0,0,0.04);
+            --card-shadow: 0 0 0 1px rgba(37,99,235,0.06), 0 16px 48px rgba(0,0,0,0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -74,14 +76,14 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
             touch-action: manipulation;
             background:
-                radial-gradient(circle at 10% 20%, var(--accent-glow) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(99,102,241,0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 100%, rgba(37,99,235,0.03) 0%, transparent 45%),
                 var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            transition: background 0.25s ease, color 0.25s ease;
+            transition: background 0.35s ease, color 0.35s ease;
         }
 
         ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -139,37 +141,28 @@
             border-bottom: 1px solid var(--border);
             margin-bottom: 32px;
             display: flex;
-            align-items: center;
-            gap: 16px;
+            align-items: flex-start;
             transition: border-color 0.25s;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            object-fit: contain;
-            flex-shrink: 0;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
         }
 
         .header-text { min-width: 0; }
 
         .brand-name {
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 700;
-            letter-spacing: -0.01em;
+            letter-spacing: 0.03em;
             white-space: nowrap;
             line-height: 1.3;
             margin: 0;
         }
 
         .brand-sub {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-secondary);
             font-weight: 400;
-            line-height: 1.4;
+            line-height: 1.5;
             transition: color 0.25s;
+            letter-spacing: 0.02em;
         }
 
         .header-actions {
@@ -273,7 +266,7 @@
 
         .input-row input[type="text"]:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-glow);
+            box-shadow: 0 0 0 4px var(--accent-glow), 0 0 20px rgba(59,130,246,0.06);
             background: var(--bg-inset);
         }
 
@@ -283,24 +276,24 @@
 
         .btn-primary {
             padding: 14px 32px;
-            background: var(--accent);
-            color: #fff;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #ffffff;
             border: none;
             border-radius: 14px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            transition: all 0.25s ease;
             white-space: nowrap;
             font-family: inherit;
-            box-shadow: 0 2px 8px var(--accent-glow);
+            box-shadow: 0 4px 16px rgba(59,130,246,0.18);
         }
 
         .btn-primary:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 4px 16px var(--accent-glow);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(59,130,246,0.28);
         }
-        .btn-primary:active { transform: scale(0.97); }
+        .btn-primary:active { transform: translateY(0) scale(0.98); }
         .btn-primary:disabled {
             opacity: 0.45;
             cursor: not-allowed;
@@ -1037,24 +1030,25 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(circle at 20% 30%, var(--accent-glow) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(99,102,241,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 30%, rgba(59,130,246,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(37,99,235,0.03) 0%, transparent 50%),
                 var(--bg-primary);
             z-index: 200;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         .auth-overlay::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
-            background-size: 24px 24px;
-            opacity: 0.3;
+            background-image: 
+                radial-gradient(circle, var(--border) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.25;
             pointer-events: none;
         }
 
@@ -1066,20 +1060,22 @@
 
         .auth-card {
             position: relative;
-            background: var(--bg-elevated);
+            background: 
+                linear-gradient(160deg, rgba(59,130,246,0.04) 0%, transparent 30%),
+                var(--bg-elevated);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 44px 40px;
-            width: 400px;
+            border-radius: 24px;
+            padding: 52px 44px;
+            width: 420px;
             max-width: 90vw;
-            box-shadow:
-                0 0 0 1px var(--border-light),
-                0 24px 64px rgba(0,0,0,0.35);
+            box-shadow: var(--card-shadow);
             text-align: center;
             transform: translateY(0);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        opacity 0.3s ease,
-                        box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity 0.4s ease,
+                        box-shadow 0.4s ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .auth-overlay:not(.hidden) .auth-card {
@@ -1103,97 +1099,99 @@
             animation: authShake 0.4s ease;
         }
 
-        .auth-card .auth-logo {
-            width: 52px;
-            height: 52px;
-            margin: 0 auto 20px;
-            border-radius: 14px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+        .auth-card .auth-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin-bottom: 6px;
         }
 
         .auth-card .auth-brand {
             font-size: 13px;
             font-weight: 500;
-            color: var(--text-secondary);
-            letter-spacing: 0.02em;
-            margin-bottom: 4px;
-        }
-
-        .auth-card .auth-title {
-            font-size: 19px;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            margin-bottom: 4px;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+            text-transform: uppercase;
         }
 
         .auth-card .auth-sub {
             font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 28px;
-            letter-spacing: 0.02em;
+            margin-bottom: 32px;
+            letter-spacing: 0.03em;
+            font-weight: 400;
         }
 
         .auth-card .auth-input-wrap {
             position: relative;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         .auth-card input[type="email"] {
             width: 100%;
-            padding: 13px 16px;
+            padding: 14px 18px;
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 14px;
             background: var(--bg-surface);
             color: var(--text-primary);
             font-size: 15px;
             font-family: inherit;
             outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            transition: all 0.25s ease;
+            letter-spacing: 0.01em;
         }
 
         .auth-card input[type="email"]:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-glow);
+            box-shadow: 0 0 0 4px var(--accent-glow), 0 0 20px rgba(59,130,246,0.08);
             background: var(--bg-inset);
         }
 
+        .auth-card input[type="email"]::placeholder {
+            color: var(--text-muted);
+            letter-spacing: 0.01em;
+        }
+
         .auth-card .auth-hint {
-            margin-top: 12px;
+            margin-top: 14px;
             font-size: 11px;
             color: var(--text-muted);
-            min-height: 16px;
+            letter-spacing: 0.02em;
         }
 
         .auth-card .auth-btn {
             width: 100%;
-            padding: 13px 0;
-            background: var(--accent);
-            color: #fff;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #ffffff;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 15px;
             font-weight: 600;
-            cursor: pointer;
             font-family: inherit;
-            letter-spacing: 0.02em;
-            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-            box-shadow: 0 2px 8px var(--accent-glow);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: 0.04em;
+            box-shadow: 0 4px 16px rgba(59,130,246,0.20);
         }
 
         .auth-card .auth-btn:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 4px 16px var(--accent-glow);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(59,130,246,0.30);
         }
 
         .auth-card .auth-btn:active {
-            transform: scale(0.97);
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 8px rgba(59,130,246,0.15);
+            transition: all 0.1s ease;
         }
 
         .auth-card .auth-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
         .auth-card .auth-error {
@@ -1201,7 +1199,8 @@
             font-size: 13px;
             color: var(--danger);
             min-height: 20px;
-            transition: opacity 0.2s;
+            transition: opacity 0.25s ease;
+            letter-spacing: 0.01em;
         }
 
         .auth-card .auth-step {
@@ -1280,10 +1279,9 @@
         }
 
         @media (max-width: 480px) {
-            .auth-card { padding: 36px 24px; border-radius: 16px; }
+            .auth-card { padding: 40px 28px; border-radius: 20px; }
             .auth-card .auth-title { font-size: 17px; }
-            .auth-card .auth-logo { width: 44px; height: 44px; margin-bottom: 16px; }
-            .auth-card .auth-sub { margin-bottom: 22px; }
+            .auth-card .auth-sub { margin-bottom: 20px; }
         }
 
         /* ── Toast ── */
@@ -1358,7 +1356,6 @@
         @media (max-width: 768px) {
             .container { padding: 0 16px 32px; }
             .app-header { padding: 24px 0 18px; gap: 12px; }
-            .logo-icon { width: 38px; height: 38px; border-radius: 10px; }
             .brand-name { font-size: 17px; }
             .brand-sub { font-size: 12px; }
             .input-row { flex-direction: column; }
@@ -1395,10 +1392,10 @@
 <!-- Auth Gate -->
 <div class="auth-overlay" id="authOverlay">
     <div class="auth-card" id="authCard">
-        <img class="auth-logo" src="Geodriv CN logo.png" alt="GEODRIV" width="52" height="52">
-        <div class="auth-title">GEOLYX 玖之力工业技术</div>
-        <div class="auth-brand">航空航天智能装配-ADU/EDU/Light Automation</div>
-        <div class="auth-sub">CI Technology by GEODRIV 爵领科技</div>
+        <div class="auth-title">玖之力工业技术</div>
+        <div class="auth-brand">GEOLYX</div>
+        <div class="auth-sub">航空航天智能装配</div>
+        <div class="auth-sub" style="margin-bottom:32px">Powered by GEODRIV 爵领科技</div>
 
         <!-- Step 1: Email -->
         <div class="auth-step" id="authStepEmail">
@@ -1419,11 +1416,11 @@
         <div class="container">
             <!-- Header -->
             <header class="app-header">
-                <img class="logo-icon" src="Geodriv CN logo.png" alt="GEODRIV" width="48" height="48">
                 <div class="header-text">
-                    <h1 class="brand-name">GEOLYX 玖之力工业技术</h1>
-                    <div class="brand-sub">航空航天智能装配-ADU/EDU/Light Automation</div>
-                    <div class="brand-sub">CI Technology by GEODRIV 爵领科技</div>
+                    <h1 class="brand-name">玖之力工业技术</h1>
+                    <div class="brand-sub">GEOLYX</div>
+                    <div class="brand-sub">航空航天智能装配</div>
+                    <div class="brand-sub">Powered by GEODRIV 爵领科技</div>
                 </div>
                 <div class="header-actions" style="position:relative">
                     <div class="user-badge" id="userBadge" style="display:none" onclick="showUserLogins()" title="查看登录记录"></div>
@@ -1495,7 +1492,7 @@
 
             <!-- Footer -->
             <div class="app-footer">
-                GEOLYX CI &middot; CI Technology by GEODRIV 爵领科技 &middot; <span id="currentYear"></span>
+                GEOLYX CI &middot; Powered by GEODRIV 爵领科技 &middot; <span id="currentYear"></span>
             </div>
         </div>
     </div>
