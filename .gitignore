@@ -1,0 +1,4 @@
+# GEODRIV CI Website
+# Cloudflare Pages deployment
+.cache/
+.temp/
