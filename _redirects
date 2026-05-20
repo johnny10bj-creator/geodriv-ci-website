@@ -1,5 +1,0 @@
-# Cloudflare Pages redirects
-# SPA fallback: any path under /feiye that doesn't match a real file → /feiye/index.html
-/feiye/*  /feiye/index.html  200
-# SPA fallback: any path under /aerospace that doesn't match a real file → /aerospace/index.html
-/aerospace/*  /aerospace/index.html  200
