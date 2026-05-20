@@ -134,16 +134,9 @@
             font-weight: 600;
             color: var(--text-primary);
             text-decoration: none;
-            display: flex; align-items: center; gap: var(--ds-8);
+            display: flex; align-items: center; gap: 0;
             letter-spacing: -0.01em;
             transition: color 0.35s;
-        }
-
-        .nav-logo .dot {
-            width: 9px; height: 9px;
-            border-radius: 50%;
-            background: var(--brand-blue);
-            transition: background 0.35s;
         }
 
         .nav-actions {
@@ -653,8 +646,7 @@
     <nav class="nav">
         <div class="nav-inner">
             <a href="#" class="nav-logo">
-                <span class="dot"></span>
-                GEODRIV
+                GEODRIV <span style="color:var(--text-muted);font-weight:400;margin:0 2px;">|</span> CI
             </a>
             <div class="nav-actions">
                 <button class="lang-btn" type="button" onclick="toggleLanguage()" aria-label="Switch language">中文</button>
@@ -670,7 +662,7 @@
             <span class="en-text">Intelligence that moves <em class="hl-blue">faster</em> than the <em class="hl-red">market</em>.</span>
             <span class="zh-text" style="display:none;">比<em class="hl-red">市场</em>更<em class="hl-blue">快</em>的智能情报。</span>
         </h1>
-        <p class="en-text">Bespoke AI-powered competitive intelligence consultancy — we design custom CI systems that turn scattered market signals into decisive action.</p>
+        <p class="en-text">Tailored AI-powered competitive intelligence consultancy — we design custom CI systems that turn scattered market signals into decisive action.</p>
         <p class="zh-text" style="display:none;">基于AI的定制化竞争情报咨询服务——我们设计专属情报系统，将零散的市场信号转化为果断行动。</p>
     </section>
 
@@ -685,7 +677,7 @@
                 <div class="card-icon">🧠</div>
                 <h3 class="en-text">Custom CI Systems</h3>
                 <h3 class="zh-text" style="display:none;">定制情报系统</h3>
-                <p class="en-text">Bespoke competitive intelligence systems designed for your industry and workflow.</p>
+                <p class="en-text">Tailored competitive intelligence systems designed for your industry and workflow.</p>
                 <p class="zh-text" style="display:none;">为您的行业与工作流程量身定制的竞争情报系统。</p>
             </div>
             <div class="card">
