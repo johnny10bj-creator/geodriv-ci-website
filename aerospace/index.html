@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
-    <title>GEOLYX CI — 航空航天智能装配竞品情报</title>
+    <title>GEOLYX Aerospace — 航空航天智能装配竞品情报</title>
     <style>
         /* ── Theme Variables ── */
         :root,
@@ -1030,8 +1030,9 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse at 50% 30%, rgba(59,130,246,0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(37,99,235,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 30%, rgba(59,130,246,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(37,99,235,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(96,165,250,0.03) 0%, transparent 55%),
                 var(--bg-primary);
             z-index: 200;
             display: flex;
@@ -1048,8 +1049,32 @@
             background-image: 
                 radial-gradient(circle, var(--border) 1px, transparent 1px);
             background-size: 32px 32px;
-            opacity: 0.25;
+            opacity: 0.2;
             pointer-events: none;
+        }
+
+        /* Aerospace orbital decoration */
+        .auth-overlay::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            border-radius: 50%;
+            border: 1px solid rgba(59,130,246,0.05);
+            box-shadow: 
+                0 0 0 80px rgba(59,130,246,0.008),
+                0 0 0 200px rgba(59,130,246,0.005),
+                0 0 0 340px rgba(59,130,246,0.003);
+            pointer-events: none;
+            animation: orbitalPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes orbitalPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
         }
 
         .auth-overlay.hidden {
@@ -1472,27 +1497,27 @@
             <!-- Loading State -->
             <div class="loading-overlay" id="loadingOverlay">
                 <div class="spinner"></div>
-                <div class="loading-text" id="loadingText">正在收集全球情报数据…</div>
+                <div class="loading-text" id="loadingText">正在检索航空航天全球情报数据…</div>
                 <div class="loading-steps" id="loadingSteps">
-                    <div class="step" data-step="0">&#127760; 搜索公开网络情报</div>
-                    <div class="step" data-step="1">&#128269; 检索知识库与内部情报</div>
-                    <div class="step" data-step="2">&#128172; AI 多通道分析中</div>
-                    <div class="step" data-step="3">&#128203; 生成综合情报报告</div>
+                    <div class="step" data-step="0">&#127760; 检索全球公开情报</div>
+                    <div class="step" data-step="1">&#128269; 分析航空航天专利布局</div>
+                    <div class="step" data-step="2">&#128172; AI 多通道交叉验证中</div>
+                    <div class="step" data-step="3">&#128203; 生成综合竞品情报报告</div>
                 </div>
             </div>
 
             <!-- Result Area -->
             <div class="result-area" id="resultArea">
                 <div class="empty-state">
-                    <div class="empty-icon">&#128269;</div>
-                    <div class="empty-title">竞品情报查询</div>
-                    <div class="empty-desc">输入竞品名称并选择查询意图，获取全面的竞争情报分析报告</div>
+                    <div class="empty-icon">&#128752;</div>
+                    <div class="empty-title">航空航天竞品情报查询</div>
+                    <div class="empty-desc">输入竞品名称与企业名称，获取全球航空航天装配产业链情报</div>
                 </div>
             </div>
 
             <!-- Footer -->
             <div class="app-footer">
-                GEOLYX CI &middot; Powered by GEODRIV 爵领科技 &middot; <span id="currentYear"></span>
+                GEOLYX Aerospace &middot; Powered by GEODRIV 爵领科技 &middot; <span id="currentYear"></span>
             </div>
         </div>
     </div>
@@ -2168,10 +2193,10 @@ function runQuery() {
     var workflowIntent = INTENT_OPTIONS[selectedIntent] || ('• 综合情报报告 — 全维度竞品战略评估');
 
     var loadingTexts = [
-        '\u{1F310} 正在搜索公开网络情报…',
-        '\u{1F50D} 正在检索知识库与内部情报…',
-        '\u{1F4AC} AI 多通道分析中…',
-        '\u{1F4CB} 生成综合情报报告…'
+        '\u{1F310} 正在检索全球航空航天数据…',
+        '\u{1F50D} 正在分析竞争专利布局…',
+        '\u{1F4AC} AI 多通道交叉验证中…',
+        '\u{1F4CB} 生成航空航天竞品报告…'
     ];
 
     var loadTextEl = document.getElementById('loadingText');
@@ -2249,8 +2274,8 @@ function runQuery() {
             resultArea.innerHTML =
                 '<div class="empty-state">' +
                 '<div class="empty-icon">&#9888;&#65039;</div>' +
-                '<div class="empty-title">查询未返回有效结果</div>' +
-                '<div class="empty-desc">请检查竞品名称或稍后重试</div></div>';
+                '<div class="empty-title">未获取到航空航天情报</div>' +
+                '<div class="empty-desc">请检查竞品名称或调整查询条件后重试</div></div>';
             showToast('未获取到情报结果', 'error');
         }
     })
