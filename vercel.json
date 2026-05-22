@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/feiye-embed", "destination": "/feiye/index.html" },
+    { "source": "/feiye/api/dify/:path*", "destination": "/api/feiye/:path*" },
+    { "source": "/aerospace/api/:path*", "destination": "/api/aerospace/:path*" },
+    { "source": "/aerospace", "destination": "/aerospace/index.html" }
+  ],
+  "trailingSlash": false
+}
