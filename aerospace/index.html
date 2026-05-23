@@ -9,7 +9,7 @@
     <title>GEOLYX Aerospace — 航空航天智能装配竞品情报</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         /* ── Theme Variables ── */
         :root,
@@ -29,10 +29,10 @@
             --border: rgba(255,255,255,0.07);
             --border-light: rgba(255,255,255,0.03);
             --success: #0f9b8e;
-            --warning: #e8a317;
+            --warning: #D85A30;
             --danger: #d64559;
-            --internal-badge: #e8a317;
-            --internal-badge-bg: rgba(232,163,23,0.12);
+            --internal-badge: #D85A30;
+            --internal-badge-bg: rgba(216,90,48,0.12);
             --public-badge: #1a6fb5;
             --public-badge-bg: rgba(26,111,181,0.12);
             --scrollbar-thumb: rgba(255,255,255,0.08);
@@ -58,10 +58,10 @@
             --border: rgba(0,0,0,0.08);
             --border-light: rgba(0,0,0,0.04);
             --success: #0f9b8e;
-            --warning: #c98b0f;
+            --warning: #c05628;
             --danger: #d64559;
-            --internal-badge: #c98b0f;
-            --internal-badge-bg: rgba(201,139,15,0.09);
+            --internal-badge: #c05628;
+            --internal-badge-bg: rgba(216,90,48,0.09);
             --public-badge: #1a6fb5;
             --public-badge-bg: rgba(26,111,181,0.09);
             --scrollbar-thumb: rgba(0,0,0,0.10);
@@ -76,7 +76,7 @@
         html { font-size: 16px; }
 
         body {
-            font-family: "Inter", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            font-family: "Source Sans 3", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
             touch-action: manipulation;
             background:
                 radial-gradient(ellipse at 50% 0%, rgba(26,111,181,0.06) 0%, transparent 55%),
@@ -151,7 +151,7 @@
         .header-text { min-width: 0; }
 
         .brand-name {
-            font-family: "DM Sans", "PingFang SC", sans-serif;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
             font-size: 21px;
             font-weight: 700;
             letter-spacing: 0.03em;
@@ -565,7 +565,7 @@
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 13px;
-            font-family: "Space Grotesk", "SF Mono", "Fira Code", "Consolas", monospace;
+            font-family: "Source Sans 3", "SF Mono", "Fira Code", "Consolas", monospace;
         }
 
         .result-area pre {
@@ -1429,7 +1429,7 @@
                 <div class="header-actions" style="position:relative">
                     <div class="user-badge" id="userBadge" style="display:none" onclick="showUserLogins()" title="查看登录记录"></div>
                     <button class="icon-btn" id="adminBtn" onclick="toggleAdminPanel()" title="管理授权邮箱" aria-label="管理授权" style="display:none">&#9881;</button>
-                    <button class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="切换主题" aria-label="Toggle theme">&#9670;</button>
+                    <button class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="切换主题" aria-label="Toggle theme">🌙</button>
                     <button class="icon-btn" id="historyToggle" onclick="toggleHistory()" title="查询历史" aria-label="Toggle history">&#9776;</button>
                 </div>
             </header>
