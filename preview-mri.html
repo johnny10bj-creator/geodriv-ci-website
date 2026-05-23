@@ -412,21 +412,31 @@ h3 { font-size: 1.25rem; }
 <div class="toast" id="toast"><span id="toastMsg"></span></div>
 
 <script>
-// Auth
-var ALLOWED_HASHES = JSON.parse(localStorage.getItem('geolyx_extra_emails') || '[]');
-var ADMIN_EMAILS = ['shibaojun@geolyxtech.com', 'shibaojun@geodriv.com'];
-
+/* ── Auth Gate ── */
+var HARDCODED_EMAILS = [
+    '871181798f3465b9dbb2180945c3b3784be9b1d2d2da26906e9c70a3e5f4e0be',
+    '8d30acdb652e158052d96d127b60989c3a18ae3c5cb3d40bef95ee1782361df0',
+    'd18a1b6b6107c2adc6d7fc6514582e6d6991425fdad98a536ee0e93153adc946'
+];
+function getAllowedEmails() {
+    var extra = [];
+    try { extra = JSON.parse(localStorage.getItem('geolyx_extra_emails') || '[]'); } catch(e) {}
+    var hashes = HARDCODED_EMAILS.slice();
+    for (var i = 0; i < extra.length; i++) {
+        if (hashes.indexOf(extra[i].hash) === -1) hashes.push(extra[i].hash);
+    }
+    return hashes;
+}
 async function sha256(msg) {
   var buf = new TextEncoder().encode(msg);
   var hash = await crypto.subtle.digest('SHA-256', buf);
   return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
-
 function verifyAuth() {
   var email = document.getElementById('authEmail').value.trim();
   if (!email) return;
   sha256(email).then(function(h) {
-    if (ALLOWED_HASHES.includes(h)) {
+    if (getAllowedEmails().includes(h)) {
       sessionStorage.setItem('geolyx_email', email);
       sessionStorage.setItem('geolyx_hash', h);
       document.getElementById('authOverlay').classList.add('hidden');
@@ -437,12 +447,10 @@ function verifyAuth() {
     }
   });
 }
-
-// Check session
 (function() {
   var e = sessionStorage.getItem('geolyx_email');
   var h = sessionStorage.getItem('geolyx_hash');
-  if (e && h) document.getElementById('authOverlay').classList.add('hidden');
+  if (e && h && getAllowedEmails().includes(h)) document.getElementById('authOverlay').classList.add('hidden');
 })();
 
 // Intents
