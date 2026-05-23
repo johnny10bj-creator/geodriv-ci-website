@@ -393,7 +393,67 @@
             transition: background 0.35s;
         }
 
-        /* ═══ CTA ═══ */
+        /* ═══ Process Section ═══ */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--ds-20);
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--brand-blue);
+            color: var(--btn-text);
+            font-family: "Inter", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto var(--ds-20);
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step:not(:last-child) .process-number::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 100%;
+            width: calc(100% + 20px);
+            height: 1px;
+            background: linear-gradient(90deg, var(--brand-blue), var(--border-strong));
+            z-index: 0;
+        }
+
+        .process-step h3 {
+            font-family: "Inter", "Noto Sans SC", sans-serif;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--ds-8);
+            letter-spacing: -0.005em;
+            transition: color 0.35s;
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            transition: color 0.35s;
+        }
+
+        @media (max-width: 768px) {
+            .process-grid { grid-template-columns: 1fr; }
+            .process-step:not(:last-child) .process-number::after {
+                top: 100%; left: 50%;
+                width: 1px; height: var(--ds-20);
+                background: linear-gradient(180deg, var(--brand-blue), var(--border-strong));
+            }
+        }
         .cta-section {
             max-width: 1100px;
             margin: 0 auto;
@@ -719,6 +779,44 @@
                 <li class="zh-text" style="display:none;">智能制造专业经验</li>
                 <li class="zh-text" style="display:none;">工业自动化情报</li>
             </ul>
+        </div>
+    </section>
+
+    <section class="section">
+        <p class="section-eyebrow en-text">Our Process</p>
+        <p class="section-eyebrow zh-text" style="display:none;">工作流程</p>
+        <h2 class="en-text">How We Deliver Intelligence</h2>
+        <h2 class="zh-text" style="display:none;">我们如何交付情报</h2>
+
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="process-number">1</div>
+                <h3 class="en-text">Discovery</h3>
+                <h3 class="zh-text" style="display:none;">需求发现</h3>
+                <p class="en-text">Define scope, objectives, and key intelligence questions with your team.</p>
+                <p class="zh-text" style="display:none;">与您的团队共同定义情报范围、目标和关键问题。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">2</div>
+                <h3 class="en-text">Data Collection</h3>
+                <h3 class="zh-text" style="display:none;">数据收集</h3>
+                <p class="en-text">Multi-source data pipelines — patents, tenders, news, financials, and deep web signals.</p>
+                <p class="zh-text" style="display:none;">多源数据采集——专利、招标、新闻、财报与深层网络信号。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">3</div>
+                <h3 class="en-text">Analysis</h3>
+                <h3 class="zh-text" style="display:none;">情报分析</h3>
+                <p class="en-text">AI-powered synthesis, competitive benchmarking, and pattern recognition.</p>
+                <p class="zh-text" style="display:none;">AI驱动的综合分析、竞争对标与模式识别。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">4</div>
+                <h3 class="en-text">Delivery</h3>
+                <h3 class="zh-text" style="display:none;">成果交付</h3>
+                <p class="en-text">Action-ready reports, dashboards, and executive briefings — when you need them.</p>
+                <p class="zh-text" style="display:none;">执行就绪的报告、仪表盘与高管简报——在您需要的时刻。</p>
+            </div>
         </div>
     </section>
 
