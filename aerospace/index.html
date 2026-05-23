@@ -1,2631 +1,540 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="auto">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
-    <title>GEOLYX Aerospace — 航空航天智能装配竞品情报</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        /* ── Theme Variables ── */
-        :root,
-        [data-theme="dark"] {
-            --bg-primary: #0b0b10;
-            --bg-elevated: #13151f;
-            --bg-surface: #1a1d2d;
-            --bg-hover: #222639;
-            --bg-inset: #0d0f18;
-            --text-primary: #f8fafc;
-            --text-secondary: rgba(248,250,252,0.60);
-            --text-muted: rgba(248,250,252,0.33);
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --accent-glow: rgba(59,130,246,0.12);
-            --accent-subtle: rgba(59,130,246,0.06);
-            --border: rgba(255,255,255,0.06);
-            --border-light: rgba(255,255,255,0.03);
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --internal-badge: #f59e0b;
-            --internal-badge-bg: rgba(245,158,11,0.10);
-            --public-badge: #60a5fa;
-            --public-badge-bg: rgba(96,165,250,0.10);
-            --scrollbar-thumb: rgba(255,255,255,0.08);
-            --scrollbar-track: transparent;
-            --shadow: 0 4px 32px rgba(0,0,0,0.55);
-            --shadow-sm: 0 1px 6px rgba(0,0,0,0.40);
-            --card-shadow: 0 0 0 1px rgba(59,130,246,0.04), 0 24px 80px rgba(0,0,0,0.55);
-        }
-
-        [data-theme="light"] {
-            --bg-primary: #f1f5f9;
-            --bg-elevated: #ffffff;
-            --bg-surface: #e2e8f0;
-            --bg-hover: #cbd5e1;
-            --bg-inset: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: rgba(15,23,42,0.55);
-            --text-muted: rgba(15,23,42,0.33);
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --accent-glow: rgba(37,99,235,0.10);
-            --accent-subtle: rgba(37,99,235,0.05);
-            --border: rgba(0,0,0,0.07);
-            --border-light: rgba(0,0,0,0.03);
-            --success: #16a34a;
-            --warning: #d97706;
-            --danger: #dc2626;
-            --internal-badge: #d97706;
-            --internal-badge-bg: rgba(217,119,6,0.09);
-            --public-badge: #2563eb;
-            --public-badge-bg: rgba(37,99,235,0.09);
-            --scrollbar-thumb: rgba(0,0,0,0.10);
-            --scrollbar-track: transparent;
-            --shadow: 0 4px 24px rgba(0,0,0,0.06);
-            --shadow-sm: 0 1px 4px rgba(0,0,0,0.04);
-            --card-shadow: 0 0 0 1px rgba(37,99,235,0.06), 0 16px 48px rgba(0,0,0,0.08);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { font-size: 16px; }
-
-        body {
-            font-family: "Crimson Text", "PingFang SC", "Microsoft YaHei", "Noto Serif SC", Georgia, serif;
-            touch-action: manipulation;
-            background:
-                radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 20% 80%, rgba(59,130,246,0.02) 0%, transparent 45%),
-                var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            transition: background 0.35s ease, color 0.35s ease;
-        }
-
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
-        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
-
-        ::selection { background: var(--accent); color: #fff; }
-
-        /* ── Skip Link ── */
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 16px;
-            z-index: 300;
-            padding: 10px 20px;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            pointer-events: none;
-            transition: top 0.2s ease;
-        }
-
-        .skip-link:focus {
-            top: 8px;
-            pointer-events: auto;
-        }
-
-        /* ── Layout ── */
-        .app-wrapper { display: flex; min-height: 100vh; }
-
-        .main-area {
-            flex: 1;
-            min-width: 0;
-            transition: margin-right 0.3s ease;
-            animation: mainFadeIn 0.5s ease both;
-        }
-
-        @keyframes mainFadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 24px 48px;
-        }
-
-        /* ── Header ── */
-        .app-header {
-            padding: 40px 0 28px;
-            border-bottom: 1px solid transparent;
-            border-image: linear-gradient(90deg, transparent, var(--accent-glow), transparent) 1;
-            margin-bottom: 36px;
-            display: flex;
-            align-items: flex-start;
-            transition: border-color 0.25s;
-        }
-
-        .header-text { min-width: 0; }
-
-        .brand-name {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            white-space: nowrap;
-            line-height: 1.3;
-            margin: 0;
-        }
-
-        .brand-sub {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 400;
-            line-height: 1.5;
-            transition: color 0.25s;
-            letter-spacing: 0.02em;
-        }
-
-        .header-actions {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--bg-surface);
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .icon-btn:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            border-color: var(--accent);
-            box-shadow: 0 2px 8px var(--accent-glow);
-        }
-
-        .icon-btn:active {
-            transform: scale(0.95);
-        }
-
-        .icon-btn.active {
-            background: var(--accent-subtle);
-            color: var(--accent);
-            border-color: var(--accent);
-        }
-
-        .user-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 4px 12px 4px 4px;
-            border-radius: 22px;
-            border: 1px solid var(--border);
-            background: var(--bg-surface);
-            cursor: pointer;
-            font-size: 12px;
-            color: var(--text-secondary);
-            transition: border-color 0.2s, background 0.2s;
-            max-width: 200px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .user-badge:hover {
-            border-color: var(--accent);
-            background: var(--accent-subtle);
-        }
-
-        .user-avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        /* ── Input Section ── */
-        .input-section { margin-bottom: 24px; }
-
-        .input-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .input-row input[type="text"] {
-            flex: 1;
-            padding: 14px 18px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            background: var(--bg-surface);
-            color: var(--text-primary);
-            font-size: 15px;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.25s;
-        }
-
-        .input-row input[type="text"]:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-glow), 0 0 20px rgba(59,130,246,0.06);
-            background: var(--bg-inset);
-        }
-
-        .input-row input[type="text"]::placeholder {
-            color: var(--text-muted);
-        }
-
-        .btn-primary {
-            padding: 14px 32px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            color: #ffffff;
-            border: none;
-            border-radius: 14px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            white-space: nowrap;
-            font-family: inherit;
-            box-shadow: 0 4px 16px rgba(59,130,246,0.18);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(59,130,246,0.28);
-        }
-        .btn-primary:active { transform: translateY(0) scale(0.98); }
-        .btn-primary:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* ── Intent Tags ── */
-        .intent-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .intent-tag {
-            padding: 7px 16px;
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            background: var(--bg-surface);
-            color: var(--text-secondary);
-            user-select: none;
-            font-family: inherit;
-        }
-
-        .intent-tag:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-subtle);
-            transform: translateY(-1px);
-        }
-
-        .intent-tag:active {
-            transform: scale(0.96);
-        }
-
-        .intent-tag.active {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-            box-shadow: 0 2px 8px var(--accent-glow);
-        }
-
-        /* ── File Upload ── */
-        .file-upload-zone {
-            border: 2px dashed var(--border);
-            border-radius: 14px;
-            padding: 28px 20px;
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .file-upload-zone:hover {
-            border-color: var(--accent);
-            background: var(--accent-subtle);
-            color: var(--text-secondary);
-        }
-
-        .file-upload-zone.drag-over {
-            border-color: var(--accent);
-            background: var(--accent-subtle);
-            border-style: solid;
-            box-shadow: 0 0 0 4px var(--accent-glow);
-        }
-
-        .file-upload-zone .upload-icon {
-            font-size: 28px;
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .file-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 14px;
-        }
-
-        .file-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            transition: background 0.15s;
-        }
-
-        .file-chip .file-remove {
-            cursor: pointer;
-            opacity: 0.5;
-            background: none;
-            border: none;
-            color: inherit;
-            padding: 0 2px;
-            font-family: inherit;
-            font-size: 14px;
-            line-height: 1;
-            transition: opacity 0.15s;
-        }
-
-        .file-chip .file-remove:hover { opacity: 1; }
-
-        /* ── Source Filter ── */
-        .source-filter {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .source-filter-btn {
-            padding: 6px 16px;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            background: var(--bg-surface);
-            color: var(--text-secondary);
-            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-            font-family: inherit;
-        }
-
-        .source-filter-btn:hover {
-            border-color: var(--accent);
-            color: var(--text-primary);
-            background: var(--accent-subtle);
-        }
-
-        .source-filter-btn:active { transform: scale(0.96); }
-
-        .source-filter-btn.active {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-            box-shadow: 0 2px 8px var(--accent-glow);
-        }
-
-        /* ── CAD Upload Section ── */
-        #cadUploadSection {
-            animation: cadReveal 0.25s ease;
-        }
-
-        @keyframes cadReveal {
-            from { opacity: 0; transform: translateY(-4px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ── Result Area ── */
-        .result-area {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 36px;
-            min-height: 200px;
-            font-size: 14px;
-            line-height: 1.8;
-            transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
-            overflow-wrap: break-word;
-            box-shadow:
-                0 0 0 1px var(--border-light),
-                0 8px 32px rgba(0,0,0,0.12);
-        }
-
-        .result-area:empty:not(:has(*))::before {
-            content: "查询结果将显示在此处…";
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        @keyframes resultFadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .result-area.has-content > * {
-            animation: resultFadeIn 0.35s ease both;
-        }
-
-        .result-area h1 {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 32px 0 12px;
-            line-height: 1.3;
-        }
-
-        .result-area h1:first-child { margin-top: 0; }
-
-        .result-area h2 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 28px 0 10px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
-            line-height: 1.3;
-        }
-
-        .result-area h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin: 22px 0 8px;
-            line-height: 1.3;
-        }
-
-        .result-area p { margin: 0 0 12px; }
-
-        .result-area strong {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .result-area hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 24px 0;
-        }
-
-        .result-area ul, .result-area ol {
-            padding-left: 20px;
-            margin: 8px 0 16px;
-        }
-
-        .result-area li { margin-bottom: 4px; }
-
-        .result-area table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            font-size: 13px;
-        }
-
-        .result-area th, .result-area td {
-            padding: 10px 14px;
-            border: 1px solid var(--border);
-            text-align: left;
-        }
-
-        .result-area th {
-            background: var(--bg-surface);
-            font-weight: 600;
-        }
-
-        .result-area blockquote {
-            border-left: 3px solid var(--accent);
-            padding: 8px 16px;
-            margin: 12px 0;
-            background: var(--accent-subtle);
-            border-radius: 0 8px 8px 0;
-            color: var(--text-secondary);
-        }
-
-        .result-area code {
-            background: var(--bg-surface);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-family: "JetBrains Mono", "SF Mono", "Fira Code", "Consolas", monospace;
-        }
-
-        .result-area pre {
-            background: var(--bg-inset);
-            padding: 16px;
-            border-radius: 10px;
-            overflow-x: auto;
-            border: 1px solid var(--border);
-            margin: 12px 0;
-        }
-
-        .result-area pre code {
-            background: none;
-            padding: 0;
-        }
-
-        .badge-public {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 1px 8px;
-            border-radius: 4px;
-            background: var(--public-badge-bg);
-            color: var(--public-badge);
-        }
-
-        .badge-internal {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 1px 8px;
-            border-radius: 4px;
-            background: var(--internal-badge-bg);
-            color: var(--internal-badge);
-        }
-
-        .result-area .badge-public,
-        .result-area .badge-internal {
-            vertical-align: middle;
-        }
-
-        /* ── Loading Overlay ── */
-        .loading-overlay {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 52px 32px;
-            text-align: center;
-            box-shadow:
-                0 0 0 1px var(--border-light),
-                0 8px 32px rgba(0,0,0,0.12);
-            display: none;
-            opacity: 0;
-            transform: translateY(6px);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-
-        .loading-overlay.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .spinner {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .loading-text {
-            margin-top: 18px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .loading-steps {
-            margin-top: 20px;
-            font-size: 12px;
-            color: var(--text-muted);
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .loading-steps .step {
-            padding: 6px 0;
-            opacity: 0.35;
-            transition: opacity 0.4s, color 0.4s;
-        }
-
-        .loading-steps .step.active { opacity: 1; color: var(--accent); font-weight: 500; }
-        .loading-steps .step.done { opacity: 0.55; color: var(--success); }
-
-        /* ── History Panel (slide-out) ── */
-        .history-overlay {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            border: none;
-            margin: 0;
-            padding: 0;
-            background: rgba(0,0,0,0.45);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            z-index: 98;
-            display: none;
-            opacity: 0;
-            cursor: default;
-            transition: opacity 0.3s ease;
-        }
-
-        .history-overlay.open {
-            display: block;
-            opacity: 1;
-        }
-
-        .history-panel {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: 360px;
-            max-width: 90vw;
-            height: 100vh;
-            height: 100dvh;
-            background: var(--bg-elevated);
-            border-left: 1px solid var(--border);
-            z-index: 99;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), background 0.25s, border-color 0.25s;
-            box-shadow: -8px 0 40px rgba(0,0,0,0.25);
-        }
-
-        .history-panel.open { transform: translateX(0); }
-
-        .history-panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 22px 16px;
-            border-bottom: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-
-        .history-panel-header h3 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .history-panel-header .panel-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .history-panel-header .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 24px;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            transition: background 0.15s, color 0.15s;
-        }
-
-        .history-panel-header .close-btn:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-        }
-
-        .history-list {
-            flex: 1;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            padding: 10px 16px;
-        }
-
-        .history-item {
-            padding: 14px 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: background 0.2s ease, border-color 0.2s ease;
-            margin-bottom: 4px;
-            border: 1px solid transparent;
-        }
-
-        .history-item:hover {
-            background: var(--bg-hover);
-            border-color: var(--border);
-        }
-
-        .history-item:active {
-            border-color: var(--accent);
-            background: var(--accent-subtle);
-        }
-
-        .history-item .h-competitor {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 3px;
-        }
-
-        .history-item .h-intent {
-            font-size: 12px;
-            color: var(--accent);
-            margin-bottom: 3px;
-        }
-
-        .history-item .h-time {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .history-empty {
-            text-align: center;
-            padding: 56px 20px;
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        .history-clear-btn {
-            padding: 6px 14px;
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 12px;
-            font-family: inherit;
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
-        }
-
-        .history-clear-btn:hover {
-            border-color: var(--danger);
-            color: var(--danger);
-            background: rgba(239,68,68,0.06);
-        }
-        /* ── Admin Panel ── */
-        .admin-overlay {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            border: none;
-            margin: 0;
-            padding: 0;
-            background: rgba(0,0,0,0.45);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            z-index: 96;
-            display: none;
-            opacity: 0;
-            cursor: default;
-            transition: opacity 0.3s ease;
-        }
-
-        .admin-overlay.open { display: block; opacity: 1; }
-
-        .admin-panel {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: 420px;
-            max-width: 92vw;
-            height: 100vh;
-            height: 100dvh;
-            background: var(--bg-elevated);
-            border-left: 1px solid var(--border);
-            z-index: 97;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), background 0.25s, border-color 0.25s;
-            box-shadow: -8px 0 40px rgba(0,0,0,0.25);
-        }
-
-        .admin-panel.open { transform: translateX(0); }
-
-        .admin-panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 22px 16px;
-            border-bottom: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-
-        .admin-panel-header h3 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .admin-panel-body {
-            flex: 1;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            padding: 18px 22px;
-        }
-
-        .admin-add-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .admin-add-row input[type="email"] {
-            flex: 1;
-            padding: 10px 14px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: var(--bg-surface);
-            color: var(--text-primary);
-            font-size: 14px;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .admin-add-row input[type="email"]:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-glow);
-        }
-
-        .admin-error {
-            font-size: 12px;
-            color: var(--danger);
-            min-height: 18px;
-            margin-bottom: 8px;
-        }
-
-        .admin-list { display: flex; flex-direction: column; gap: 4px; }
-
-        .admin-list-loading {
-            text-align: center;
-            padding: 24px;
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        .admin-email-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: 1px solid var(--border-light);
-            background: var(--bg-surface);
-            transition: background 0.2s;
-        }
-
-        .admin-email-item:hover { background: var(--bg-hover); }
-
-        .admin-email-item .email-info {
-            min-width: 0;
-        }
-
-        .admin-email-item .email-addr {
-            font-size: 13px;
-            font-weight: 500;
-            word-break: break-all;
-        }
-
-        .admin-email-item .email-meta {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .admin-email-item .email-badge {
-            display: inline-block;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 1px 6px;
-            border-radius: 4px;
-            margin-left: 6px;
-        }
-
-        .badge-hardcoded { background: var(--internal-badge-bg); color: var(--internal-badge); }
-        .badge-dynamic { background: var(--public-badge-bg); color: var(--public-badge); }
-
-        .admin-email-item .remove-btn {
-            flex-shrink: 0;
-            padding: 6px 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 12px;
-            font-family: inherit;
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
-        }
-
-        .admin-email-item .remove-btn:hover {
-            border-color: var(--danger);
-            color: var(--danger);
-            background: rgba(239,68,68,0.06);
-        }
-
-        .admin-section-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin: 20px 0 10px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-        }
-
-        .admin-login-list {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            font-size: 12px;
-        }
-
-        .admin-login-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-light);
-            background: var(--bg-surface);
-        }
-
-        .admin-login-item .login-email {
-            flex: 1;
-            min-width: 0;
-            font-weight: 500;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .admin-login-item .login-city {
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .admin-login-item .login-time {
-            color: var(--text-muted);
-            font-size: 11px;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 480px) {
-            .admin-panel { width: 100%; max-width: 100vw; }
-            .admin-add-row { flex-direction: column; }
-            .admin-add-row .btn-primary { width: 100%; }
-            .admin-login-item { flex-wrap: wrap; }
-        }
-
-        .auth-overlay {
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 50% 30%, rgba(59,130,246,0.05) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(59,130,246,0.03) 0%, transparent 50%),
-                var(--bg-primary);
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .auth-overlay::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                radial-gradient(1px 1px at 12% 18%, rgba(59,130,246,0.25) 50%, transparent 50%),
-                radial-gradient(1px 1px at 28% 72%, rgba(59,130,246,0.18) 50%, transparent 50%),
-                radial-gradient(1px 1px at 55% 14%, rgba(59,130,246,0.22) 50%, transparent 50%),
-                radial-gradient(1px 1px at 68% 88%, rgba(59,130,246,0.15) 50%, transparent 50%),
-                radial-gradient(1px 1px at 82% 35%, rgba(59,130,246,0.20) 50%, transparent 50%),
-                radial-gradient(1px 1px at 94% 65%, rgba(59,130,246,0.12) 50%, transparent 50%),
-                radial-gradient(1px 1px at 8% 55%, rgba(59,130,246,0.16) 50%, transparent 50%),
-                radial-gradient(1px 1px at 42% 45%, rgba(59,130,246,0.14) 50%, transparent 50%),
-                radial-gradient(2px 2px at 15% 35%, rgba(255,255,255,0.30) 50%, transparent 50%),
-                radial-gradient(2px 2px at 75% 22%, rgba(255,255,255,0.25) 50%, transparent 50%),
-                radial-gradient(2px 2px at 50% 75%, rgba(255,255,255,0.28) 50%, transparent 50%);
-            background-size: 100% 100%;
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        /* Radar scan line */
-        .auth-overlay::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 1px;
-            height: 45%;
-            background: linear-gradient(to top, rgba(59,130,246,0.25), transparent);
-            transform-origin: bottom center;
-            animation: radarSweep 6s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes radarSweep {
-            from { transform: translate(-50%, 0) rotate(0deg); }
-            to { transform: translate(-50%, 0) rotate(360deg); }
-        }
-
-        .auth-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .auth-card {
-            position: relative;
-            background: 
-                linear-gradient(160deg, var(--accent-subtle) 0%, transparent 30%),
-                var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 52px 44px;
-            width: 420px;
-            max-width: 90vw;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            transform: translateY(0);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        opacity 0.4s ease,
-                        box-shadow 0.4s ease;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .auth-overlay:not(.hidden) .auth-card {
-            animation: authCardIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-        }
-
-        @keyframes authCardIn {
-            from { opacity: 0; transform: translateY(12px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @keyframes authShake {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-6px); }
-            40% { transform: translateX(6px); }
-            60% { transform: translateX(-4px); }
-            80% { transform: translateX(4px); }
-        }
-
-        .auth-card.shake {
-            animation: authShake 0.4s ease;
-        }
-
-        .auth-card .auth-title {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            margin-bottom: 6px;
-        }
-
-        .auth-card .auth-brand {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--accent);
-            letter-spacing: 0.06em;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-        }
-
-        .auth-card .auth-sub {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 32px;
-            letter-spacing: 0.03em;
-            font-weight: 400;
-        }
-
-        .auth-card .auth-input-wrap {
-            position: relative;
-            margin-bottom: 16px;
-        }
-
-        .auth-card input[type="email"] {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            background: var(--bg-surface);
-            color: var(--text-primary);
-            font-size: 15px;
-            font-family: inherit;
-            outline: none;
-            transition: all 0.25s ease;
-            letter-spacing: 0.01em;
-        }
-
-        .auth-card input[type="email"]:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-glow), 0 0 20px rgba(59,130,246,0.08);
-            background: var(--bg-inset);
-        }
-
-        .auth-card input[type="email"]::placeholder {
-            color: var(--text-muted);
-            letter-spacing: 0.01em;
-        }
-
-        .auth-card .auth-hint {
-            margin-top: 14px;
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 0.02em;
-        }
-
-        .auth-card .auth-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            color: #ffffff;
-            border: none;
-            border-radius: 14px;
-            font-size: 15px;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            letter-spacing: 0.04em;
-            box-shadow: 0 4px 16px rgba(59,130,246,0.20);
-        }
-
-        .auth-card .auth-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(59,130,246,0.30);
-        }
-
-        .auth-card .auth-btn:active {
-            transform: translateY(0) scale(0.98);
-            box-shadow: 0 2px 8px rgba(59,130,246,0.15);
-            transition: all 0.1s ease;
-        }
-
-        .auth-card .auth-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .auth-card .auth-error {
-            margin-top: 10px;
-            font-size: 13px;
-            color: var(--danger);
-            min-height: 20px;
-            transition: opacity 0.25s ease;
-            letter-spacing: 0.01em;
-        }
-
-        .auth-card .auth-step {
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-
-        .auth-card .auth-step-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 14px;
-        }
-
-        .auth-card input[type="tel"],
-        .auth-card input[type="text"] {
-            width: 100%;
-            padding: 13px 16px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: var(--bg-surface);
-            color: var(--text-primary);
-            font-size: 15px;
-            font-family: inherit;
-            outline: none;
-            letter-spacing: 1px;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-        }
-
-        .auth-card input[type="tel"]:focus,
-        .auth-card input[type="text"]:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-glow);
-            background: var(--bg-inset);
-        }
-
-        .auth-card .auth-back-btn {
-            margin-top: 16px;
-            width: 100%;
-            padding: 8px 0;
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text-muted);
-            font-size: 13px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
-        }
-
-        .auth-card .auth-back-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-subtle);
-        }
-
-        .auth-card .auth-phone-display {
-            text-align: center;
-            padding: 8px 12px;
-            background: var(--accent-subtle);
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 14px;
-            color: var(--accent);
-        }
-
-        .auth-code-sent {
-            text-align: center;
-            font-size: 12px;
-            color: var(--success);
-            margin-bottom: 14px;
-            padding: 8px 12px;
-            background: rgba(34,197,94,0.08);
-            border-radius: 8px;
-            border: 1px solid rgba(34,197,94,0.15);
-        }
-
-        @media (max-width: 480px) {
-            .auth-card { padding: 40px 28px; border-radius: 20px; }
-            .auth-card .auth-title { font-size: 17px; }
-            .auth-card .auth-sub { margin-bottom: 20px; }
-        }
-
-        /* ── Toast ── */
-        .toast {
-            position: fixed;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%) translateY(16px);
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 24px;
-            font-size: 13px;
-            font-weight: 500;
-            box-shadow:
-                0 0 0 1px var(--border-light),
-                0 8px 32px rgba(0,0,0,0.25);
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: none;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .toast.toast-error { border-color: var(--danger); }
-        .toast.toast-error .toast-icon { color: var(--danger); }
-        .toast.toast-success { border-color: var(--success); }
-        .toast.toast-success .toast-icon { color: var(--success); }
-
-        /* ── Footer ── */
-        .app-footer {
-            text-align: center;
-            padding: 24px 0 32px;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-light);
-            margin-top: 24px;
-        }
-
-        /* ── Empty State ── */
-        .empty-state {
-            text-align: center;
-            padding: 48px 20px;
-            color: var(--text-muted);
-        }
-
-        .empty-state .empty-icon {
-            font-size: 44px;
-            margin-bottom: 16px;
-            opacity: 0.35;
-        }
-
-        .empty-state .empty-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 6px;
-            color: var(--text-secondary);
-        }
-
-        .empty-state .empty-desc {
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 768px) {
-            .container { padding: 0 16px 32px; }
-            .app-header { padding: 24px 0 18px; gap: 12px; }
-            .brand-name { font-size: 17px; }
-            .brand-sub { font-size: 12px; }
-            .input-row { flex-direction: column; }
-            .btn-primary { width: 100%; justify-content: center; }
-            .result-area { padding: 24px; border-radius: 14px; }
-            .history-panel { width: 300px; }
-            .intent-tags { gap: 6px; }
-            .intent-tag { font-size: 12px; padding: 5px 12px; }
-            .source-filter { flex-wrap: wrap; }
-            .file-upload-zone { padding: 20px 16px; }
-            .loading-overlay { padding: 36px 24px; }
-        }
-
-        @media (max-width: 480px) {
-            .header-actions .icon-btn { width: 36px; height: 36px; font-size: 14px; }
-            .brand-sub { display: none; }
-            .result-area { padding: 20px; border-radius: 12px; }
-            .loading-overlay { padding: 28px 20px; border-radius: 14px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEOLYX Aerospace — 航空航天智能装配竞品情报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pri: #0d2137; --pri-l: #14375a; --pri-d: #081525;
+  --acc: #1a6fb5; --acc-h: #155d99; --acc-bg: #e8f4fd; --acc-light: #b3d9f2;
+  --sec: #e8a317; --sec-h: #c98b0f; --sec-bg: #fef9e7;
+  --teal: #0f9b8e; --teal-bg: #e6f7f5;
+  --rose: #d64559; --rose-bg: #fdeef0;
+  --txt: #475569; --txt-h: #0d2137; --muted: #7a8ea3;
+  --bg: #f4f7fa; --white: #fff; --bdr: #d6dfe8;
+  --grad-hero: linear-gradient(135deg, #081525 0%, #0d2137 30%, #14375a 65%, #1a6fb5 100%);
+  --grad-acc: linear-gradient(135deg, #1a6fb5, #2b8fd4, #45a5e6);
+  --grad-warm: linear-gradient(135deg, #e8a317, #f0b840, #f5cc60);
+  --r-sm: 8px; --r-md: 12px; --r-lg: 20px; --r-xl: 24px;
+  --sh-sm: 0 1px 3px rgba(13,33,55,.06);
+  --sh-md: 0 4px 16px rgba(13,33,55,.1);
+  --sh-lg: 0 12px 40px rgba(13,33,55,.14);
+  --sh-glow: 0 0 30px rgba(26,111,181,.18);
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-head: 'DM Sans', 'Inter', system-ui, sans-serif;
+  --font-data: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font); font-size: 15.5px; line-height: 1.7;
+  color: var(--txt); background: var(--bg); margin: 0; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 700; color: var(--pri); line-height: 1.2; letter-spacing: -.02em; }
+h1 { font-size: clamp(2.1rem, 4.5vw, 3.4rem); font-weight: 800; }
+h2 { font-size: clamp(1.55rem, 3.5vw, 2.4rem); }
+h3 { font-size: 1.25rem; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
+::selection { background: var(--acc); color: #fff; }
+
+.gradient-text { background: var(--grad-acc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.badge-label { display: inline-block; padding: 6px 16px; border-radius: var(--r-full); font-size: 12px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; }
+.badge-label.on-dark { background: rgba(255,255,255,.12); color: #b3d9f2; }
+.badge-label.on-light { background: var(--acc-bg); color: var(--acc); }
+
+/* ===== NAVBAR ===== */
+.nav-main {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bdr); padding: 0;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-brand { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; color: var(--pri); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.nav-brand img { height: 32px; }
+.nav-links { display: flex; list-style: none; gap: 28px; margin: 0; padding: 0; }
+.nav-links a { color: var(--txt); text-decoration: none; font-weight: 500; font-size: 14px; transition: color .2s; }
+.nav-links a:hover { color: var(--acc); }
+.nav-cta { background: var(--acc); color: #fff !important; padding: 8px 20px; border-radius: var(--r-sm); font-weight: 600 !important; transition: background .2s; }
+.nav-cta:hover { background: var(--acc-h); }
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--grad-hero); color: #fff;
+  padding: 80px 0 60px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(26,111,181,.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-row { display: flex; align-items: center; gap: 40px; }
+.hero-text { flex: 1; }
+.hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; min-height: 260px; }
+.hero-glow {
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,111,181,.25), transparent 60%);
+  position: relative;
+}
+.hero-glow::after {
+  content: ''; position: absolute; inset: 40px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.08);
+  animation: orbit 12s linear infinite;
+}
+.hero-glow::before {
+  content: ''; position: absolute; inset: 80px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.05);
+  animation: orbit 18s linear infinite reverse;
+}
+@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.hero h1 { color: #fff; margin-bottom: 16px; }
+.hero .lead { font-size: 1.1rem; color: rgba(255,255,255,.7); margin-bottom: 28px; line-height: 1.7; max-width: 440px; }
+
+/* Hero search bar */
+.hero-search { position: relative; max-width: 480px; margin-bottom: 20px; }
+.hero-search input {
+  width: 100%; padding: 16px 128px 16px 20px; border-radius: var(--r-lg);
+  border: 2px solid transparent; background: rgba(255,255,255,.12);
+  color: #fff; font-family: var(--font); font-size: 15px; outline: none;
+  transition: all .25s;
+}
+.hero-search input::placeholder { color: rgba(255,255,255,.45); }
+.hero-search input:focus { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.25); }
+.hero-search button {
+  position: absolute; right: 6px; top: 6px; bottom: 6px;
+  padding: 0 24px; border-radius: 14px; border: none;
+  background: var(--sec); color: #fff; font-weight: 700; font-size: 14px;
+  cursor: pointer; transition: background .2s;
+}
+.hero-search button:hover { background: var(--sec-h); }
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-wh { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: var(--r-sm); font-weight: 600; font-size: 14px; cursor: pointer; transition: all .2s; border: none; text-decoration: none; background: #fff; color: var(--pri); }
+.btn-wh:hover { background: var(--bg); transform: translateY(-1px); }
+.btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: var(--r-sm); font-weight: 600; font-size: 14px; cursor: pointer; transition: all .2s; text-decoration: none; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.25); }
+.btn-ghost:hover { background: rgba(255,255,255,.08); }
+
+.hero-stats { display: flex; gap: 32px; margin-top: 32px; }
+.hero-stat .num { font-family: var(--font-data); font-size: 1.6rem; font-weight: 700; color: #fff; }
+.hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,.55); }
+
+/* Intents bar below hero */
+.intents-bar { background: var(--white); border-bottom: 1px solid var(--bdr); padding: 16px 0; }
+.intents-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.intent-tag {
+  padding: 8px 18px; border-radius: var(--r-full); font-size: 13px; font-weight: 500;
+  cursor: pointer; border: 1px solid var(--bdr); background: var(--white);
+  color: var(--txt); transition: all .2s;
+}
+.intent-tag:hover { border-color: var(--acc-light); color: var(--acc); }
+.intent-tag.active { background: var(--acc); color: #fff; border-color: var(--acc); }
+
+/* ===== SECTIONS ===== */
+.section { padding: 48px 0; }
+.section-sm { padding: 32px 0; }
+.section-header { text-align: left; margin-bottom: 28px; }
+.section-header h2 { margin-bottom: 8px; }
+.section-header p { color: var(--muted); font-size: 15px; }
+
+/* Cards */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 20px; }
+.card {
+  background: var(--white); border-radius: var(--r-lg); padding: 28px;
+  border: 1px solid var(--bdr); transition: all .25s;
+}
+.card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+.card h4 { margin: 0 0 8px; font-size: 1.05rem; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+.card .icon { width: 48px; height: 48px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 22px; }
+.card .icon.blue { background: var(--acc-bg); color: var(--acc); }
+.card .icon.teal { background: var(--teal-bg); color: var(--teal); }
+.card .icon.amber { background: var(--sec-bg); color: var(--sec); }
+
+/* Auth overlay */
+.auth-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8,21,37,.92); backdrop-filter: blur(8px);
+  transition: opacity .4s, visibility .4s;
+}
+.auth-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.auth-card {
+  background: var(--white); border-radius: var(--r-xl); padding: 48px 40px;
+  width: 420px; max-width: 90vw; box-shadow: var(--sh-lg); text-align: center;
+}
+.auth-card h2 { font-size: 1.4rem; margin-bottom: 4px; }
+.auth-card .brand { font-size: 13px; color: var(--acc); font-weight: 600; letter-spacing: .06em; margin-bottom: 4px; }
+.auth-card .sub { font-size: 12px; color: var(--muted); margin-bottom: 28px; }
+.auth-card input {
+  width: 100%; padding: 14px 16px; border-radius: var(--r-md);
+  border: 1px solid var(--bdr); font-size: 15px; font-family: var(--font);
+  outline: none; text-align: center; transition: border .2s;
+}
+.auth-card input:focus { border-color: var(--acc); box-shadow: 0 0 0 3px rgba(26,111,181,.08); }
+.auth-btn {
+  width: 100%; padding: 14px; border-radius: var(--r-md); border: none;
+  background: var(--acc); color: #fff; font-weight: 600; font-size: 15px;
+  margin-top: 12px; cursor: pointer; transition: background .2s;
+}
+.auth-btn:hover { background: var(--acc-h); }
+.auth-error { color: var(--rose); font-size: 13px; margin-top: 10px; display: none; }
+.auth-hint { font-size: 12px; color: var(--muted); margin-top: 14px; }
+
+/* Result area */
+.result-area {
+  background: var(--white); border-radius: var(--r-lg); border: 1px solid var(--bdr);
+  padding: 40px; max-width: 780px; margin: 0 auto;
+}
+.empty-state { text-align: center; padding: 32px 0; }
+.empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
+.empty-title { font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; color: var(--pri); margin-bottom: 8px; }
+.empty-desc { font-size: 14px; color: var(--muted); max-width: 400px; margin: 0 auto; }
+
+/* Loading */
+.loading-overlay { display: none; padding: 60px 0; text-align: center; }
+.loading-overlay.active { display: block; }
+.spinner {
+  width: 40px; height: 40px; border: 3px solid var(--bdr);
+  border-top-color: var(--acc); border-radius: 50%; margin: 0 auto 20px;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+.loading-steps { display: flex; flex-direction: column; gap: 6px; max-width: 300px; margin: 0 auto; }
+.loading-steps .step { font-size: 13px; color: var(--muted); transition: color .3s; }
+.loading-steps .step.active { color: var(--acc); font-weight: 500; }
+.loading-steps .step.done { color: var(--teal); }
+
+/* Footer */
+.app-footer {
+  text-align: center; padding: 32px 0; color: var(--muted); font-size: 13px;
+  border-top: 1px solid var(--bdr); margin-top: 48px;
+}
+
+/* Source filter */
+.source-filter { display: flex; gap: 8px; margin-bottom: 16px; }
+.source-filter-btn {
+  padding: 6px 18px; border-radius: var(--r-full); font-size: 13px;
+  border: 1px solid var(--bdr); background: var(--white); color: var(--txt);
+  cursor: pointer; transition: all .2s;
+}
+.source-filter-btn:hover { border-color: var(--acc-light); }
+.source-filter-btn.active { background: var(--acc); color: #fff; border-color: var(--acc); }
+
+/* Result content styling */
+.result-content h3 { font-size: 1.15rem; margin: 24px 0 12px; }
+.result-content h3:first-child { margin-top: 0; }
+.result-content p { line-height: 1.8; margin-bottom: 12px; }
+.result-content table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+.result-content th, .result-content td { padding: 10px 14px; border: 1px solid var(--bdr); text-align: left; font-size: 14px; }
+.result-content th { background: var(--acc-bg); color: var(--pri); font-weight: 600; }
+.result-content ul, .result-content ol { padding-left: 20px; margin: 8px 0; }
+.result-content code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+
+/* Badges */
+.badge-internal { display: inline-block; padding: 2px 10px; border-radius: var(--r-full); font-size: 11px; font-weight: 600; background: var(--sec-bg); color: var(--sec); }
+.badge-public { display: inline-block; padding: 2px 10px; border-radius: var(--r-full); font-size: 11px; font-weight: 600; background: var(--acc-bg); color: var(--acc); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+  padding: 12px 24px; border-radius: var(--r-md); font-size: 14px;
+  background: var(--pri); color: #fff; z-index: 300;
+  opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s;
+}
+.toast.show { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(-4px); }
+.toast.error { background: var(--rose); }
+.toast.success { background: var(--teal); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-row { flex-direction: column; }
+  .hero { padding: 48px 0 36px; }
+  .hero-glow { width: 200px; height: 200px; }
+  .hero-stats { flex-wrap: wrap; gap: 16px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .auth-card { padding: 36px 28px; }
+  .result-area { padding: 24px; }
+  .hero-search input { padding-right: 100px; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 1rem; }
+  .hero h1 { font-size: 1.6rem; }
+  .hero-search button { padding: 0 16px; font-size: 13px; }
+}
+</style>
 </head>
 <body>
 
-<a href="#mainArea" class="skip-link">跳到主内容</a>
-
-<!-- Auth Gate -->
+<!-- ===== AUTH OVERLAY ===== -->
 <div class="auth-overlay" id="authOverlay">
-    <div class="auth-card" id="authCard">
-        <div class="auth-title">玖之力工业技术</div>
-        <div class="auth-brand">GEOLYX</div>
-        <div class="auth-sub">航空航天智能装配</div>
-        <div class="auth-sub" style="margin-bottom:32px">Powered by GEODRIV 爵领科技</div>
-
-        <!-- Step 1: Email -->
-        <div class="auth-step" id="authStepEmail">
-            <div class="auth-input-wrap">
-                <input type="email" id="authEmail" placeholder="输入授权邮箱地址" maxlength="64" autocomplete="email" name="email" aria-label="授权邮箱">
-            </div>
-            <button class="auth-btn" id="authBtn" onclick="verifyAuth()">验证访问</button>
-            <div class="auth-error" id="authError" aria-live="polite"></div>
-            <div class="auth-hint">仅限指定邮箱访问</div>
-        </div>
-
-    </div>
+  <div class="auth-card">
+    <h2>玖之力工业技术</h2>
+    <div class="brand">GEOLYX</div>
+    <div class="sub">航空航天智能装配 · Powered by GEODRIV</div>
+    <input type="email" id="authEmail" placeholder="输入授权邮箱">
+    <button class="auth-btn" onclick="verifyAuth()">验证访问</button>
+    <div class="auth-error" id="authError"></div>
+    <div class="auth-hint">仅限指定邮箱访问</div>
+  </div>
 </div>
 
-<div class="app-wrapper">
-    <!-- Main Area -->
-    <div class="main-area" id="mainArea">
-        <div class="container">
-            <!-- Header -->
-            <header class="app-header">
-                <div class="header-text">
-                    <h1 class="brand-name">玖之力工业技术</h1>
-                    <div class="brand-sub">GEOLYX</div>
-                    <div class="brand-sub">航空航天智能装配</div>
-                    <div class="brand-sub">Powered by GEODRIV 爵领科技</div>
-                </div>
-                <div class="header-actions" style="position:relative">
-                    <div class="user-badge" id="userBadge" style="display:none" onclick="showUserLogins()" title="查看登录记录"></div>
-                    <button class="icon-btn" id="adminBtn" onclick="toggleAdminPanel()" title="管理授权邮箱" aria-label="管理授权" style="display:none">&#9881;</button>
-                    <button class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="切换主题" aria-label="Toggle theme">&#9670;</button>
-                    <button class="icon-btn" id="historyToggle" onclick="toggleHistory()" title="查询历史" aria-label="Toggle history">&#9776;</button>
-                </div>
-            </header>
-
-            <!-- Input Section -->
-            <div class="input-section">
-                <div class="input-row">
-                    <input type="text" id="competitorInput" name="competitor" placeholder="输入竞品名称，如 Desoutter、Luebbering、Electroimpact…" autocomplete="off" maxlength="200" />
-                    <button class="btn-primary" id="searchBtn" onclick="runQuery()">&#128269; 查询</button>
-                </div>
-
-                <div class="intent-tags" id="intentTags">
-                    <span class="intent-tag" data-intent="技术对标">&#128295; 技术对标</span>
-                    <span class="intent-tag" data-intent="价格查询">&#128176; 价格查询</span>
-                    <span class="intent-tag" data-intent="产品选项">&#128230; 产品选项</span>
-                    <span class="intent-tag" data-intent="OEM项目追踪">&#127973; OEM项目追踪</span>
-                    <span class="intent-tag" data-intent="专利布局">&#128220; 专利布局</span>
-                    <span class="intent-tag" data-intent="认证合规">&#9989; 认证合规</span>
-                    <span class="intent-tag" data-intent="CAD图纸分析">&#128207; CAD图纸分析</span>
-                    <span class="intent-tag active" data-intent="综合情报报告">&#128202; 综合情报报告</span>
-                </div>
-
-                <!-- File Upload (only visible for CAD) -->
-                <div id="cadUploadSection" style="display:none">
-                <div class="file-upload-zone" id="dropZone">
-                    <span class="upload-icon">&#128206;</span>
-                    拖拽或点击上传 CAD图纸 / PDF / 图片（BOM自动提取）
-                    <input type="file" id="fileInput" multiple
-                           accept=".pdf,.jpg,.jpeg,.png,.gif,.webp,.svg,.tiff,.tif,.dwg,.doc,.docx,.txt"
-                           style="display:none" onchange="handleFileSelect(event)" />
-                </div>
-                <div class="file-list" id="fileList"></div>
-                </div>
-                <!-- end CAD upload section -->
-
-                <!-- Source Filter -->
-                <div class="source-filter">
-                    <button class="source-filter-btn active" data-filter="all" onclick="setSourceFilter('all', this)">全部</button>
-                    <button class="source-filter-btn" data-filter="public" onclick="setSourceFilter('public', this)">&#127760; 公开</button>
-                    <button class="source-filter-btn" data-filter="internal" onclick="setSourceFilter('internal', this)">&#128274; 内部</button>
-                </div>
-            </div>
-
-            <!-- Loading State -->
-            <div class="loading-overlay" id="loadingOverlay">
-                <div class="spinner"></div>
-                <div class="loading-text" id="loadingText">正在检索航空航天全球情报数据…</div>
-                <div class="loading-steps" id="loadingSteps">
-                    <div class="step" data-step="0">&#127760; 检索全球公开情报</div>
-                    <div class="step" data-step="1">&#128269; 分析航空航天专利布局</div>
-                    <div class="step" data-step="2">&#128172; AI 多通道交叉验证中</div>
-                    <div class="step" data-step="3">&#128203; 生成综合竞品情报报告</div>
-                </div>
-            </div>
-
-            <!-- Result Area -->
-            <div class="result-area" id="resultArea">
-                <div class="empty-state">
-                    <div class="empty-icon">&#128752;</div>
-                    <div class="empty-title">航空航天竞品情报查询</div>
-                    <div class="empty-desc">输入竞品名称与企业名称，获取全球航空航天装配产业链情报</div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <div class="app-footer">
-                GEOLYX Aerospace &middot; Powered by GEODRIV 爵领科技 &middot; <span id="currentYear"></span>
-            </div>
-        </div>
+<!-- ===== NAV ===== -->
+<nav class="nav-main">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="#">GEOLYX CI</a>
+    <div class="nav-links">
+      <a href="#">首页</a>
+      <a href="#">服务</a>
+      <a href="#">竞品情报</a>
+      <a href="#">关于</a>
+      <a href="#" class="nav-cta">联系我们</a>
     </div>
+  </div>
+</nav>
 
-    <!-- History Overlay -->
-    <button class="history-overlay" id="historyOverlay" onclick="toggleHistory()" aria-label="关闭历史面板"></button>
-
-    <!-- History Panel -->
-    <div class="history-panel" id="historyPanel">
-        <div class="history-panel-header">
-            <h3>&#128203; 查询历史</h3>
-            <div class="panel-actions">
-                <button class="history-clear-btn" onclick="clearHistory()">清空</button>
-                <button class="close-btn" onclick="toggleHistory()">&times;</button>
-            </div>
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-row">
+      <div class="hero-text">
+        <span class="badge-label on-dark">Precision Market Intelligence</span>
+        <h1>航空航天竞品情报 <span class="gradient-text">智能分析平台</span></h1>
+        <p class="lead">覆盖全球航空航天产业链，实时追踪竞品动态、专利布局、OEM 项目与认证合规情报。</p>
+        <div class="hero-search">
+          <input type="text" id="competitorInput" placeholder="输入竞品名称，如：Boeing, Airbus, COMAC…" autocomplete="off">
+          <button onclick="runQuery()">查询</button>
         </div>
-        <div class="history-list" id="historyList">
-            <div class="history-empty">暂无查询历史</div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num">50+</div><div class="lbl">覆盖国家</div></div>
+          <div class="hero-stat"><div class="num">15</div><div class="lbl">行业经验</div></div>
+          <div class="hero-stat"><div class="num">实时</div><div class="lbl">数据更新</div></div>
+          <div class="hero-stat"><div class="num">AI</div><div class="lbl">智能分析</div></div>
         </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-glow"></div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Admin Panel Overlay -->
-    <button class="admin-overlay" id="adminOverlay" onclick="toggleAdminPanel()" aria-label="关闭管理面板"></button>
-
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-panel-header">
-            <h3>&#9881; 授权邮箱管理</h3>
-            <button class="close-btn" onclick="toggleAdminPanel()">&times;</button>
-        </div>
-        <div class="admin-panel-body">
-            <div class="admin-add-row">
-                <input type="email" id="newEmailInput" placeholder="输入要授权的邮箱地址&hellip;" autocomplete="off" aria-label="新授权邮箱">
-                <button class="btn-primary" id="addEmailBtn" onclick="addAuthorizedEmail()" style="padding:10px 18px;font-size:13px;">添加</button>
-            </div>
-            <div class="admin-error" id="adminError" aria-live="polite"></div>
-            <div class="admin-list" id="adminList">
-                <div class="admin-list-loading">加载中&hellip;</div>
-            </div>
-
-            <div class="admin-section-title">登录记录</div>
-            <div class="admin-login-list" id="adminLoginList">
-                <div class="admin-list-loading">加载中&hellip;</div>
-            </div>
-        </div>
+<!-- ===== INTENTS ===== -->
+<div class="intents-bar">
+  <div class="container">
+    <div class="intents-row" id="intentTags">
+      <span class="intent-tag" data-intent="技术对标">技术对标</span>
+      <span class="intent-tag" data-intent="价格查询">价格查询</span>
+      <span class="intent-tag" data-intent="产品选项">产品选项</span>
+      <span class="intent-tag" data-intent="OEM项目追踪">OEM项目追踪</span>
+      <span class="intent-tag" data-intent="专利布局">专利布局</span>
+      <span class="intent-tag" data-intent="认证合规">认证合规</span>
+      <span class="intent-tag" data-intent="CAD图纸分析">CAD图纸分析</span>
+      <span class="intent-tag active" data-intent="综合情报报告">综合情报报告</span>
     </div>
-
-    <!-- Toast -->
-    <div class="toast" id="toast">
-        <span class="toast-icon"></span>
-        <span class="toast-msg"></span>
-    </div>
+  </div>
 </div>
+
+<!-- ===== CI SERVICES ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge-label on-light">CI Capabilities</span>
+      <h2>竞品情报服务矩阵</h2>
+      <p>多维度的航空航天竞争情报分析能力，覆盖从技术对标到商业决策的全链路</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon blue">&#128202;</div>
+        <h4>综合情报报告</h4>
+        <p>全维度竞品战略评估，一键生成结构化情报报告</p>
+      </div>
+      <div class="card">
+        <div class="icon teal">&#128220;</div>
+        <h4>专利布局分析</h4>
+        <p>全球航空专利追踪，识别技术空白与创新方向</p>
+      </div>
+      <div class="card">
+        <div class="icon amber">&#127973;</div>
+        <h4>OEM 项目追踪</h4>
+        <p>实时监控主机厂供应商变更与采购动态</p>
+      </div>
+      <div class="card">
+        <div class="icon blue">&#9989;</div>
+        <h4>认证合规情报</h4>
+        <p>FAA/EASA/CAAC 认证状态追踪与合规风险评估</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOURCE + RESULT ===== -->
+<section class="section-sm">
+  <div class="container">
+    <div class="source-filter">
+      <button class="source-filter-btn active" data-filter="all" onclick="setSourceFilter('all')">全部来源</button>
+      <button class="source-filter-btn" data-filter="public" onclick="setSourceFilter('public')">公开情报</button>
+      <button class="source-filter-btn" data-filter="internal" onclick="setSourceFilter('internal')">内部知识库</button>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <div class="loading-text" id="loadingText">正在检索航空航天全球情报数据…</div>
+      <div class="loading-steps" id="loadingSteps">
+        <div class="step" data-step="0">检索全球公开情报</div>
+        <div class="step" data-step="1">分析航空航天专利布局</div>
+        <div class="step" data-step="2">AI 多通道交叉验证中</div>
+        <div class="step" data-step="3">生成综合竞品情报报告</div>
+      </div>
+    </div>
+
+    <div class="result-area" id="resultArea">
+      <div class="empty-state">
+        <div class="empty-icon">&#128752;</div>
+        <div class="empty-title">航空航天竞品情报查询</div>
+        <div class="empty-desc">输入竞品名称与企业名称，获取全球航空航天装配产业链情报</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="app-footer">
+  GEOLYX Aerospace · Powered by GEODRIV 爵领科技 · <span id="currentYear"></span>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
 
 <script>
+/* ── Auth Gate ── */
+var HARDCODED_EMAILS = [
+    '871181798f3465b9dbb2180945c3b3784be9b1d2d2da26906e9c70a3e5f4e0be',
+    '8d30acdb652e158052d96d127b60989c3a18ae3c5cb3d40bef95ee1782361df0',
+    'd18a1b6b6107c2adc6d7fc6514582e6d6991425fdad98a536ee0e93153adc946'
+];
+function getAllowedEmails() {
+    var extra = [];
+    try { extra = JSON.parse(localStorage.getItem('geolyx_extra_emails') || '[]'); } catch(e) {}
+    var hashes = HARDCODED_EMAILS.slice();
+    for (var i = 0; i < extra.length; i++) {
+        if (hashes.indexOf(extra[i].hash) === -1) hashes.push(extra[i].hash);
+    }
+    return hashes;
+}
+async function sha256(msg) {
+  var buf = new TextEncoder().encode(msg);
+  var hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+function verifyAuth() {
+  var email = document.getElementById('authEmail').value.trim();
+  if (!email) return;
+  sha256(email).then(function(h) {
+    if (getAllowedEmails().includes(h)) {
+      sessionStorage.setItem('geolyx_email', email);
+      sessionStorage.setItem('geolyx_hash', h);
+      document.getElementById('authOverlay').classList.add('hidden');
+    } else {
+      var err = document.getElementById('authError');
+      err.textContent = '邮箱未授权';
+      err.style.display = 'block';
+    }
+  });
+}
 (function() {
-    /* ── Auth Gate ── */
-    var HARDCODED_EMAILS = [
-        '871181798f3465b9dbb2180945c3b3784be9b1d2d2da26906e9c70a3e5f4e0be',  // admin@geolyx.com
-        '8d30acdb652e158052d96d127b60989c3a18ae3c5cb3d40bef95ee1782361df0',  // shibaojun@geolyxtech.com
-        'd18a1b6b6107c2adc6d7fc6514582e6d6991425fdad98a536ee0e93153adc946'   // shibaojun@geodriv.com
-    ];
-
-    var ADMINS = {
-        '8d30acdb652e158052d96d127b60989c3a18ae3c5cb3d40bef95ee1782361df0': 'shibaojun@geolyxtech.com',
-        'd18a1b6b6107c2adc6d7fc6514582e6d6991425fdad98a536ee0e93153adc946': 'shibaojun@geodriv.com'
-    };
-
-    var currentAuthHash = null;
-    var currentAuthEmail = null;
-
-    function getAllowedEmails() {
-        var extra = [];
-        try { extra = JSON.parse(localStorage.getItem('geolyx_extra_emails') || '[]'); } catch(e) {}
-        var hashes = HARDCODED_EMAILS.slice();
-        for (var i = 0; i < extra.length; i++) {
-            if (hashes.indexOf(extra[i].hash) === -1) hashes.push(extra[i].hash);
-        }
-        return hashes;
-    }
-
-    function getExtraEmails() {
-        try { return JSON.parse(localStorage.getItem('geolyx_extra_emails') || '[]'); } catch(e) { return []; }
-    }
-
-    function saveExtraEmails(list) {
-        localStorage.setItem('geolyx_extra_emails', JSON.stringify(list));
-    }
-
-    function isAdmin(hash) { return ADMINS.hasOwnProperty(hash); }
-
-    function getLoginHistory() {
-        try { return JSON.parse(localStorage.getItem('geolyx_login_history') || '[]'); } catch(e) { return []; }
-    }
-
-    function saveLoginHistory(list) {
-        if (list.length > 200) list = list.slice(0, 200);
-        localStorage.setItem('geolyx_login_history', JSON.stringify(list));
-    }
-
-    function showLastLogin(email, hash) {
-        var history = getLoginHistory();
-        var lastLogin = null;
-        // Find the most recent login for this email (skip current session)
-        for (var i = 0; i < history.length; i++) {
-            if (history[i].email === email) {
-                if (!lastLogin) {
-                    lastLogin = history[i];
-                } else {
-                    // Found a previous login
-                    var prev = history[i];
-                    var timeStr = '';
-                    try {
-                        timeStr = new Date(prev.time).toLocaleString('zh-CN', {
-                            month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-                        });
-                    } catch(e) { timeStr = prev.time; }
-                    showToast('上次登录: ' + prev.city + ' · ' + timeStr, 'success');
-                    return;
-                }
-            }
-        }
-        // No previous login found — first time
-        showToast('首次登录，已记录', 'success');
-    }
-
-    async function logLogin(email) {
-        var record = {
-            email: email,
-            time: new Date().toISOString(),
-            city: '获取中…'
-        };
-        var history = getLoginHistory();
-        history.unshift(record);
-        saveLoginHistory(history);
-
-        try {
-            var resp = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) });
-            if (resp.ok) {
-                var geo = await resp.json();
-                record.city = [geo.city, geo.region, geo.country_name].filter(Boolean).join(', ') || '未知';
-                record.ip = geo.ip;
-            }
-        } catch(e) {
-            record.city = '网络不可达';
-        }
-        // Update stored record
-        var h2 = getLoginHistory();
-        for (var i = 0; i < h2.length; i++) {
-            if (h2[i].time === record.time && h2[i].email === record.email) {
-                h2[i] = record; break;
-            }
-        }
-        saveLoginHistory(h2);
-    }
-
-    window.getLoginHistory = function() { return getLoginHistory(); };
-
-    async function sha256(message) {
-        var msgBuffer = new TextEncoder().encode(message);
-        var hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        var hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
-    }
-
-    // Already fully authenticated?
-    var savedEmail = sessionStorage.getItem('geolyx_email');
-    var savedHash = sessionStorage.getItem('geolyx_hash');
-    if (savedEmail && savedHash) {
-        document.getElementById('authOverlay').classList.add('hidden');
-        setTimeout(function() {
-            if (isAdmin(savedHash)) document.getElementById('adminBtn').style.display = 'flex';
-            showUserBadge(savedEmail);
-        }, 100);
-    } else {
-        setTimeout(function() { document.getElementById('authEmail').focus(); }, 500);
-    }
-
-    function showUserBadge(email) {
-        var badge = document.getElementById('userBadge');
-        var initial = email.charAt(0).toUpperCase();
-        badge.innerHTML = '<span class="user-avatar">' + escapeHtml(initial) + '</span>' + escapeHtml(email);
-        badge.style.display = 'flex';
-    }
-
-    window.showUserLogins = function() {
-        var email = sessionStorage.getItem('geolyx_email');
-        if (!email) return;
-        var history = getLoginHistory();
-        var ownLogins = [];
-        for (var i = 0; i < history.length; i++) {
-            if (history[i].email === email) ownLogins.push(history[i]);
-        }
-        var lines = [];
-        for (var j = 0; j < Math.min(ownLogins.length, 10); j++) {
-            var h = ownLogins[j];
-            var t = '';
-            try { t = new Date(h.time).toLocaleString('zh-CN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch(e) { t = h.time; }
-            lines.push(t + ' · ' + h.city);
-        }
-        var msg = lines.length > 0 ? lines.join('<br>') : '暂无记录';
-        // Show in a quick toast-like overlay
-        var toast = document.getElementById('toast');
-        toast.className = 'toast';
-        toast.querySelector('.toast-icon').textContent = '';
-        toast.querySelector('.toast-msg').innerHTML = '<b>' + escapeHtml(email) + ' 登录记录</b><br><br>' + msg;
-        toast.classList.add('show');
-        if (window._toastTimeout) clearTimeout(window._toastTimeout);
-        window._toastTimeout = setTimeout(function() { toast.classList.remove('show'); }, 8000);
-    };
-
-    // Step 1: Email verification
-    document.getElementById('authEmail').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') verifyAuth();
-    });
-
-    window.verifyAuth = async function() {
-        var inputEl = document.getElementById('authEmail');
-        var btn = document.getElementById('authBtn');
-        var errEl = document.getElementById('authError');
-        var card = document.getElementById('authCard');
-        var email = inputEl.value.trim().toLowerCase();
-
-        if (!email) {
-            errEl.textContent = '请输入邮箱地址';
-            shakeCard(card); inputEl.focus(); return;
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            errEl.textContent = '邮箱格式不正确';
-            shakeCard(card); inputEl.focus(); return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = '验证中…';
-        errEl.textContent = '';
-
-        var hash = await sha256(email);
-        var allowed = getAllowedEmails();
-        if (allowed.indexOf(hash) !== -1) {
-            sessionStorage.setItem('geolyx_email', email);
-            sessionStorage.setItem('geolyx_hash', hash);
-            document.getElementById('authOverlay').classList.add('hidden');
-            if (isAdmin(hash)) document.getElementById('adminBtn').style.display = 'flex';
-            showUserBadge(email);
-            btn.disabled = false;
-            btn.textContent = '验证访问';
-            showLastLogin(email, hash);
-            logLogin(email);
-        } else {
-            errEl.textContent = '此邮箱未授权访问';
-            btn.disabled = false;
-            btn.textContent = '验证访问';
-            shakeCard(card);
-            setTimeout(function() { inputEl.focus(); }, 100);
-        }
-    };
-
-    // Step 2: Email code + phone
-    function shakeCard(card) {
-        card.classList.remove('shake');
-        void card.offsetWidth;
-        card.classList.add('shake');
-    }
-
-    /* ── Theme System (auto-detect + manual override) ── */
-    var html = document.documentElement;
-    var savedTheme = localStorage.getItem('geolyx-theme');
-
-    function applyTheme(theme) {
-        if (theme === 'auto') {
-            var mq = window.matchMedia('(prefers-color-scheme: dark)');
-            html.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
-        } else {
-            html.setAttribute('data-theme', theme);
-        }
-    }
-
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    } else {
-        applyTheme('auto');
-    }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-        var st = localStorage.getItem('geolyx-theme');
-        if (!st || st === 'auto') {
-            applyTheme('auto');
-        }
-    });
-
-    window.toggleTheme = function() {
-        var current = html.getAttribute('data-theme');
-        var next = current === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-        localStorage.setItem('geolyx-theme', next);
-    };
-
-    /* ── History Panel ── */
-    window.toggleHistory = function() {
-        document.getElementById('historyPanel').classList.toggle('open');
-        document.getElementById('historyOverlay').classList.toggle('open');
-    };
-
-    /* ── Admin Panel ── */
-    window.toggleAdminPanel = function() {
-        document.getElementById('adminPanel').classList.toggle('open');
-        document.getElementById('adminOverlay').classList.toggle('open');
-        if (document.getElementById('adminPanel').classList.contains('open')) {
-            renderAdminList();
-            renderLoginHistory();
-            setTimeout(function() { document.getElementById('newEmailInput').focus(); }, 400);
-        }
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var adminEmailInput = document.getElementById('newEmailInput');
-        if (adminEmailInput) {
-            adminEmailInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') addAuthorizedEmail();
-            });
-        }
-    });
-
-    window.addAuthorizedEmail = async function() {
-        var input = document.getElementById('newEmailInput');
-        var errEl = document.getElementById('adminError');
-        var email = input.value.trim().toLowerCase();
-
-        if (!email) { errEl.textContent = '请输入邮箱地址'; return; }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = '邮箱格式不正确'; return; }
-
-        var hash = await sha256(email);
-        var allowed = getAllowedEmails();
-        if (allowed.indexOf(hash) !== -1) { errEl.textContent = '该邮箱已在授权列表中'; return; }
-
-        var extra = getExtraEmails();
-        extra.push({
-            hash: hash,
-            email: email,
-            addedBy: sessionStorage.getItem('geolyx_email') || 'unknown',
-            addedAt: new Date().toISOString()
-        });
-        saveExtraEmails(extra);
-        input.value = '';
-        errEl.textContent = '';
-        showToast(email + ' 已添加授权', 'success');
-        renderAdminList();
-    };
-
-    window.removeAuthorizedEmail = function(hash) {
-        var extra = getExtraEmails();
-        var removed = null;
-        var filtered = [];
-        for (var i = 0; i < extra.length; i++) {
-            if (extra[i].hash === hash) {
-                removed = extra[i];
-            } else {
-                filtered.push(extra[i]);
-            }
-        }
-        if (removed) {
-            saveExtraEmails(filtered);
-            showToast(removed.email + ' 已移除授权', 'success');
-            renderAdminList();
-        }
-    };
-
-    function maskEmail(email) {
-        var at = email.indexOf('@');
-        if (at <= 2) return email;
-        return email.substring(0, 2) + '***' + email.substring(at - 1);
-    }
-
-    function formatTime(iso) {
-        try {
-            return new Date(iso).toLocaleString('zh-CN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-        } catch(e) { return iso || ''; }
-    }
-
-    function renderAdminList() {
-        var container = document.getElementById('adminList');
-        var extra = getExtraEmails();
-
-        // Build combined list: hardcoded + extra
-        var items = [];
-
-        for (var i = 0; i < HARDCODED_EMAILS.length; i++) {
-            var h = HARDCODED_EMAILS[i];
-            // Find email from ADMINS or hardcoded list
-            var label = '';
-            for (var k in ADMINS) {
-                if (ADMINS.hasOwnProperty(k) && k === h) { label = ADMINS[k]; break; }
-            }
-            if (!label) label = '预置账户 #' + (i + 1);
-            items.push({ hash: h, email: label, type: 'hardcoded', addedBy: null, addedAt: null });
-        }
-
-        for (var j = 0; j < extra.length; j++) {
-            items.push({
-                hash: extra[j].hash,
-                email: extra[j].email,
-                type: 'dynamic',
-                addedBy: extra[j].addedBy,
-                addedAt: extra[j].addedAt
-            });
-        }
-
-        if (items.length === 0) {
-            container.innerHTML = '<div class="admin-list-loading">暂无授权邮箱</div>';
-            return;
-        }
-
-        var parts = [];
-        for (var m = 0; m < items.length; m++) {
-            var item = items[m];
-            var isHc = item.type === 'hardcoded';
-            var badge = isHc ? '<span class="email-badge badge-hardcoded">系统预设</span>' : '<span class="email-badge badge-dynamic">动态添加</span>';
-            var meta = '';
-            if (isHc) {
-                meta = '<div class="email-meta">管理员账户</div>';
-            } else {
-                meta = '<div class="email-meta">由 ' + escapeHtml(item.addedBy || '') + ' 添加 &middot; ' + formatTime(item.addedAt) + '</div>';
-            }
-            var removeBtn = '';
-            if (!isHc) {
-                removeBtn = '<button class="remove-btn" onclick="removeAuthorizedEmail(\'' + item.hash + '\')">移除</button>';
-            }
-
-            parts.push(
-                '<div class="admin-email-item">' +
-                '<div class="email-info">' +
-                '<div class="email-addr">' + escapeHtml(item.email) + badge + '</div>' +
-                meta +
-                '</div>' +
-                removeBtn +
-                '</div>'
-            );
-        }
-        container.innerHTML = parts.join('');
-    }
-
-    function renderLoginHistory() {
-        var container = document.getElementById('adminLoginList');
-        var history = getLoginHistory();
-        if (history.length === 0) {
-            container.innerHTML = '<div class="admin-list-loading">暂无登录记录</div>';
-            return;
-        }
-        var parts = [];
-        for (var i = 0; i < Math.min(history.length, 50); i++) {
-            var h = history[i];
-            var timeStr = '';
-            try {
-                timeStr = new Date(h.time).toLocaleString('zh-CN', {
-                    month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-                });
-            } catch(e) { timeStr = h.time || ''; }
-            parts.push(
-                '<div class="admin-login-item">' +
-                '<div class="login-email">' + escapeHtml(h.email) + '</div>' +
-                '<div class="login-city">' + escapeHtml(h.city) + '</div>' +
-                '<div class="login-time">' + escapeHtml(timeStr) + '</div>' +
-                '</div>'
-            );
-        }
-        container.innerHTML = parts.join('');
-    }
+  var e = sessionStorage.getItem('geolyx_email');
+  var h = sessionStorage.getItem('geolyx_hash');
+  if (e && h && getAllowedEmails().includes(h)) document.getElementById('authOverlay').classList.add('hidden');
 })();
 
-/* ── State ── */
-var API_BASE = (function() {
-    var path = window.location.pathname;
-    if (path.indexOf('/aerospace/') === 0) return '/aerospace/api';
-    return '/api';
-})();
+// Intents
 var selectedIntent = '综合情报报告';
-var currentSourceFilter = 'all';
-var uploadedFiles = [];
-var loadingStepInterval = null;
-
-/* ── Intent Tags ── */
-(function() {
-    var tags = document.querySelectorAll('.intent-tag');
-    for (var i = 0; i < tags.length; i++) {
-        tags[i].addEventListener('click', function() {
-            var all = document.querySelectorAll('.intent-tag');
-            for (var j = 0; j < all.length; j++) all[j].classList.remove('active');
-            this.classList.add('active');
-            selectedIntent = this.getAttribute('data-intent');
-            var cadSection = document.getElementById('cadUploadSection');
-            if (cadSection) {
-                cadSection.style.display = (selectedIntent === 'CAD图纸分析') ? 'block' : 'none';
-            }
-        });
-    }
-})();
-
-/* ── File Upload ── */
-(function() {
-    var dropZone = document.getElementById('dropZone');
-    var fileInput = document.getElementById('fileInput');
-
-    dropZone.addEventListener('click', function() {
-        fileInput.click();
-    });
-
-    dropZone.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropZone.classList.add('drag-over');
-    });
-
-    dropZone.addEventListener('dragleave', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropZone.classList.remove('drag-over');
-    });
-
-    dropZone.addEventListener('drop', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropZone.classList.remove('drag-over');
-        if (e.dataTransfer.files.length > 0) {
-            addFiles(e.dataTransfer.files);
-        }
-    });
-})();
-
-function handleFileSelect(e) {
-    if (e.target.files.length > 0) {
-        addFiles(e.target.files);
-    }
-    // Reset so the same file can be re-selected
-    e.target.value = '';
-}
-
-function addFiles(files) {
-    var MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
-    for (var i = 0; i < files.length; i++) {
-        if (files[i].size > MAX_FILE_SIZE) {
-            showToast('文件 ' + files[i].name + ' 超过20MB限制，已跳过', 'error');
-            continue;
-        }
-        // Deduplicate by name + size
-        var exists = false;
-        for (var j = 0; j < uploadedFiles.length; j++) {
-            if (uploadedFiles[j].name === files[i].name && uploadedFiles[j].size === files[i].size) {
-                exists = true;
-                break;
-            }
-        }
-        if (!exists) {
-            uploadedFiles.push(files[i]);
-        }
-    }
-    renderFileList();
-}
-
-function removeFile(index) {
-    uploadedFiles.splice(index, 1);
-    renderFileList();
-}
-
-function renderFileList() {
-    var container = document.getElementById('fileList');
-    if (uploadedFiles.length === 0) {
-        container.innerHTML = '';
-        return;
-    }
-    var parts = [];
-    for (var i = 0; i < uploadedFiles.length; i++) {
-        var f = uploadedFiles[i];
-        var size = f.size;
-        var sizeStr = '';
-        if (size < 1024) sizeStr = size + ' B';
-        else if (size < 1048576) sizeStr = (size / 1024).toFixed(1) + ' KB';
-        else sizeStr = (size / 1048576).toFixed(1) + ' MB';
-
-        var icon = '&#128196;';
-        var name = f.name.toLowerCase();
-        if (name.match(/\.(jpg|jpeg|png|gif|webp|svg|tiff?|bmp)$/)) icon = '&#128247;';
-        else if (name.match(/\.(pdf)$/)) icon = '&#128196;';
-        else if (name.match(/\.(dwg|dxf)$/)) icon = '&#128207;';
-        else if (name.match(/\.(doc|docx)$/)) icon = '&#128209;';
-        else if (name.match(/\.(txt)$/)) icon = '&#128221;';
-
-        parts.push('<span class="file-chip">' + icon + ' ' + escapeHtml(f.name) + ' (' + sizeStr + ')' +
-                '<button class="file-remove" onclick="removeFile(' + i + ')" aria-label="移除文件">&times;</button></span>');
-    }
-    container.innerHTML = parts.join('');
-}
-
-/* ── Source Filter ── */
-function setSourceFilter(filter, btn) {
-    currentSourceFilter = filter;
-    var allBtns = document.querySelectorAll('.source-filter-btn');
-    for (var i = 0; i < allBtns.length; i++) allBtns[i].classList.remove('active');
-    btn.classList.add('active');
-
-    // Re-render existing content with new filter
-    var resultArea = document.getElementById('resultArea');
-    var raw = resultArea.getAttribute('data-raw-markdown');
-    if (raw) {
-        resultArea.innerHTML = renderMarkdown(raw, currentSourceFilter);
-        resultArea.classList.add('has-content');
-    }
-}
-
-/* ── Enter key ── */
-document.getElementById('competitorInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') runQuery();
+document.querySelectorAll('.intent-tag').forEach(function(t) {
+  t.addEventListener('click', function() {
+    document.querySelectorAll('.intent-tag').forEach(function(x) { x.classList.remove('active'); });
+    t.classList.add('active');
+    selectedIntent = t.dataset.intent;
+  });
 });
 
-/* ── Intent to workflow select option mapping ── */
-var INTENT_OPTIONS = {
-    '技术对标': '• 技术对标 — ADU/EDU 主轴转速、扭矩、精度、材料适应',
-    '价格查询': '• 价格查询 — 公开定价、投标价格、性价比分析',
-    '产品选项': '• 产品选项 — 型号矩阵、配置选项、技术选型',
-    'OEM项目追踪': '• OEM项目追踪 — 波音/空客/商飞项目归属、供应商资格',
-    '专利布局': '• 专利布局 — 航空钻孔专利、自动化装配IP、FTO分析',
-    '认证合规': '• 认证合规 — AS9100D/NADCAP/EASA/FAA 认证状态',
-    'CAD图纸分析': '• BOM分析 — 上传CAD图纸提取BOM并对比',
-    '综合情报报告': '• 综合情报报告 — 全维度竞品战略评估',
-    '供应链与并购': '• 供应链与并购 — 上下游整合、收购动态、产能扩充'
-};
+// Source filter
+var sourceFilter = 'all';
+function setSourceFilter(f) {
+  sourceFilter = f;
+  document.querySelectorAll('.source-filter-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.filter === f);
+  });
+}
 
-/* ── Core Query ── */
+// Query (mock)
 function runQuery() {
-    var competitor = document.getElementById('competitorInput').value.trim();
-    if (!competitor) {
-        showToast('请输入竞品名称', 'error');
-        document.getElementById('competitorInput').focus();
-        return;
-    }
+  var q = document.getElementById('competitorInput').value.trim();
+  if (!q) { showToast('请输入竞品名称', 'error'); return; }
 
-    var btn = document.getElementById('searchBtn');
-    if (btn.disabled) return;  // Guard against concurrent queries
-    btn.disabled = true;
-    btn.textContent = '&#9203; 查询中…';
+  var loading = document.getElementById('loadingOverlay');
+  var result = document.getElementById('resultArea');
+  loading.classList.add('active');
+  result.innerHTML = '';
 
-    var resultArea = document.getElementById('resultArea');
-    var loading = document.getElementById('loadingOverlay');
+  var steps = document.querySelectorAll('#loadingSteps .step');
+  steps.forEach(function(s) { s.classList.remove('active','done'); });
+  var si = 0;
+  var stepInter = setInterval(function() {
+    if (si > 0) steps[si-1].classList.add('done');
+    if (si < steps.length) { steps[si].classList.add('active'); si++; }
+    if (si >= steps.length) clearInterval(stepInter);
+  }, 800);
 
-    // Clear previous results
-    resultArea.innerHTML = '';
-    resultArea.classList.remove('has-content');
-    resultArea.removeAttribute('data-raw-markdown');
-    loading.classList.add('active');
+  var txts = ['正在检索全球航空航天数据…','正在分析竞争专利布局…','AI 多通道交叉验证中…','生成航空航天竞品报告…'];
+  var txtEl = document.getElementById('loadingText'), ti = 0;
+  var txtInter = setInterval(function() {
+    ti = (ti+1) % txts.length; txtEl.textContent = txts[ti];
+  }, 2000);
 
-    // Reset and animate loading steps
-    var steps = document.querySelectorAll('#loadingSteps .step');
-    for (var s = 0; s < steps.length; s++) {
-        steps[s].classList.remove('active', 'done');
-    }
-    var stepIndex = 0;
-    if (steps.length > 0) steps[0].classList.add('active');
-
-    if (loadingStepInterval) clearInterval(loadingStepInterval);
-    loadingStepInterval = setInterval(function() {
-        if (stepIndex < steps.length) {
-            steps[stepIndex].classList.remove('active');
-            steps[stepIndex].classList.add('done');
-        }
-        stepIndex++;
-        if (stepIndex < steps.length) {
-            steps[stepIndex].classList.add('active');
-        } else {
-            clearInterval(loadingStepInterval);
-            loadingStepInterval = null;
-        }
-    }, 3000);
-
-    var workflowIntent = INTENT_OPTIONS[selectedIntent] || ('• 综合情报报告 — 全维度竞品战略评估');
-
-    var loadingTexts = [
-        '\u{1F310} 正在检索全球航空航天数据…',
-        '\u{1F50D} 正在分析竞争专利布局…',
-        '\u{1F4AC} AI 多通道交叉验证中…',
-        '\u{1F4CB} 生成航空航天竞品报告…'
-    ];
-
-    var loadTextEl = document.getElementById('loadingText');
-    var loadTextIdx = 0;
-    var loadTextInterval = setInterval(function() {
-        loadTextIdx = (loadTextIdx + 1) % loadingTexts.length;
-        loadTextEl.textContent = loadingTexts[loadTextIdx];
-    }, 4000);
-
-    var hasFiles = uploadedFiles.length > 0;
-    var fetchOptions;
-    if (hasFiles) {
-        var formData = new FormData();
-        formData.append('inputs[user_input_]', workflowIntent);
-        formData.append('inputs[competitor_name]', competitor);
-        for (var fi = 0; fi < uploadedFiles.length; fi++) {
-            formData.append('files', uploadedFiles[fi]);
-        }
-        formData.append('response_mode', 'blocking');
-        formData.append('user', 'geolyx-user');
-        fetchOptions = { method: 'POST', body: formData };
-    } else {
-        fetchOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                inputs: {
-                    user_input_: workflowIntent,
-                    competitor_name: competitor
-                },
-                response_mode: 'blocking',
-                user: 'geolyx-user'
-            })
-        };
-    }
-
-    var startTime = Date.now();
-
-    fetch(API_BASE + '/workflows/run', fetchOptions)
-    .then(function(response) {
-        if (!response.ok) {
-            return response.json().then(function(err) {
-                throw new Error(err.message || 'HTTP ' + response.status);
-            }).catch(function() {
-                throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-            });
-        }
-        return response.json();
-    })
-    .then(function(data) {
-        clearInterval(loadTextInterval);
-        clearInterval(loadingStepInterval);
-        loadingStepInterval = null;
-        loading.classList.remove('active');
-        btn.disabled = false;
-        btn.textContent = '\u{1F50D} 查询';
-
-        var elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-
-        if (data && data.data && data.data.outputs && data.data.outputs.ci_report) {
-            var report = data.data.outputs.ci_report;
-            resultArea.setAttribute('data-raw-markdown', report);
-            resultArea.innerHTML = renderMarkdown(report, currentSourceFilter);
-            resultArea.classList.add('has-content');
-            saveHistory(competitor, selectedIntent, report);
-            showToast('查询完成 (' + elapsed + 's)', 'success');
-        } else if (data && data.data && data.data.answer) {
-            var answer = data.data.answer;
-            resultArea.setAttribute('data-raw-markdown', answer);
-            resultArea.innerHTML = renderMarkdown(answer, currentSourceFilter);
-            resultArea.classList.add('has-content');
-            saveHistory(competitor, selectedIntent, answer);
-            showToast('查询完成 (' + elapsed + 's)', 'success');
-        } else {
-            resultArea.innerHTML =
-                '<div class="empty-state">' +
-                '<div class="empty-icon">&#9888;&#65039;</div>' +
-                '<div class="empty-title">未获取到航空航天情报</div>' +
-                '<div class="empty-desc">请检查竞品名称或调整查询条件后重试</div></div>';
-            showToast('未获取到情报结果', 'error');
-        }
-    })
-    .catch(function(err) {
-        clearInterval(loadTextInterval);
-        clearInterval(loadingStepInterval);
-        loadingStepInterval = null;
-        loading.classList.remove('active');
-        btn.disabled = false;
-        btn.textContent = '\u{1F50D} 查询';
-        resultArea.innerHTML =
-            '<div class="empty-state">' +
-            '<div class="empty-icon">&#10060;</div>' +
-            '<div class="empty-title">查询失败</div>' +
-            '<div class="empty-desc">' + escapeHtml(err.message) + '<br>请检查网络连接后重试</div></div>';
-        showToast('查询失败: ' + err.message, 'error');
-    });
+  setTimeout(function() {
+    clearInterval(stepInter); clearInterval(txtInter);
+    steps.forEach(function(s) { s.classList.add('done'); });
+    loading.classList.remove('active');
+    result.innerHTML = '<div class="result-content">' +
+      '<h3>' + escapeHtml(q) + ' — 竞品综合情报报告</h3>' +
+      '<p><span class="badge-internal">内部知识库</span> <span class="badge-public">公开数据</span></p>' +
+      '<p>本报告基于全球航空航天产业链数据，对 <strong>' + escapeHtml(q) + '</strong> 的技术路线、专利布局、OEM 供应商关系及市场定位进行多维分析。</p>' +
+      '<table><thead><tr><th>维度</th><th>状态</th><th>趋势</th></tr></thead><tbody>' +
+      '<tr><td>技术对标</td><td>领先 2 个技术代次</td><td>稳定</td></tr>' +
+      '<tr><td>专利布局</td><td>近 3 年新增 47 项</td><td>上升</td></tr>' +
+      '<tr><td>OEM 项目</td><td>参与 3 个主项目</td><td>扩展中</td></tr>' +
+      '<tr><td>认证状态</td><td>FAA/EASA 双认证</td><td>维持</td></tr>' +
+      '</tbody></table>' +
+      '<p><em>本报告由 GEOLYX CI 平台生成 · 数据更新于 ' + new Date().toLocaleDateString('zh-CN') + '</em></p>' +
+      '</div>';
+    showToast('查询完成', 'success');
+  }, 2500);
 }
 
-/* ── Markdown Renderer ── */
-function renderMarkdown(text, filter) {
-    if (!text) return '';
-
-    /* ── Source Filter Logic ── */
-    if (filter === 'internal') {
-        var lines = text.split('\n');
-        var filtered = [];
-        var inPublicSection = false;
-        var inInternalSection = false;
-        var hasAnyInternal = false;
-
-        for (var i = 0; i < lines.length; i++) {
-            var line = lines[i];
-            var isH2 = /^##/.test(line.trim());
-            var isH1 = /^#/.test(line.trim());
-
-            if (isH2) {
-                var hasPublic = line.indexOf('🌐') !== -1;
-                var hasInternal = line.indexOf('🔒') !== -1;
-
-                if (hasPublic && !hasInternal) {
-                    inPublicSection = true;
-                    inInternalSection = false;
-                    continue;
-                }
-                if (hasInternal) {
-                    inInternalSection = true;
-                    inPublicSection = false;
-                    hasAnyInternal = true;
-                    filtered.push(line);
-                    continue;
-                }
-                inPublicSection = false;
-                inInternalSection = false;
-                filtered.push(line);
-                continue;
-            }
-
-            if (isH1) {
-                inPublicSection = false;
-                inInternalSection = false;
-                filtered.push(line);
-                continue;
-            }
-
-            if (inPublicSection) continue;
-
-            if (inInternalSection) {
-                filtered.push(line);
-            } else {
-                // Lines outside any section header
-                filtered.push(line);
-            }
-        }
-
-        text = filtered.join('\n');
-    }
-
-    if (filter === 'public') {
-        var lines = text.split('\n');
-        var filtered = [];
-        var inInternalSection = false;
-
-        for (var i = 0; i < lines.length; i++) {
-            var line = lines[i];
-            var isH2 = /^##/.test(line.trim());
-            var isH1 = /^#/.test(line.trim());
-
-            if (isH2) {
-                var hasInternal = line.indexOf('\u{1F512}') !== -1 || line.indexOf('🔒') !== -1;
-                if (hasInternal) {
-                    inInternalSection = true;
-                    continue;
-                }
-                inInternalSection = false;
-                filtered.push(line);
-                continue;
-            }
-
-            if (isH1) {
-                inInternalSection = false;
-                filtered.push(line);
-                continue;
-            }
-
-            if (inInternalSection) continue;
-
-            filtered.push(line);
-        }
-
-        text = filtered.join('\n');
-    }
-
-    /* ── Convert markdown to HTML ── */
-
-    // Preserve code blocks first
-    var codeBlocks = [];
-    text = text.replace(/```([\s\S]*?)```/g, function(match, code) {
-        var idx = codeBlocks.length;
-        codeBlocks.push('<pre><code>' + escapeHtml(code.trim()) + '</code></pre>');
-        return '%%CODEBLOCK' + idx + '%%';
-    });
-
-    // Inline code
-    text = text.replace(/`([^`]+)`/g, function(m, c) {
-        return '<code>' + escapeHtml(c) + '</code>';
-    });
-
-    // Headers (escape body to prevent XSS from LLM output)
-    text = text.replace(/^#### (.*)$/gm, function(m, h) { return '<h4>' + escapeHtml(h) + '</h4>'; });
-    text = text.replace(/^### (.*)$/gm, function(m, h) { return '<h3>' + escapeHtml(h) + '</h3>'; });
-    text = text.replace(/^## (.*)$/gm, function(m, h) { return '<h2>' + escapeHtml(h) + '</h2>'; });
-    text = text.replace(/^# (.*)$/gm, function(m, h) { return '<h1>' + escapeHtml(h) + '</h1>'; });
-
-    // Horizontal rules
-    text = text.replace(/^---$/gm, '<hr>');
-    text = text.replace(/^\*\*\*$/gm, '<hr>');
-
-    // Blockquotes
-    text = text.replace(/^&gt; (.*)$/gm, function(m, q) { return '<blockquote>' + escapeHtml(q) + '</blockquote>'; });
-    text = text.replace(/^> (.*)$/gm, function(m, q) { return '<blockquote>' + escapeHtml(q) + '</blockquote>'; });
-
-    // Bold
-    text = text.replace(/\*\*(.*?)\*\*/g, function(m, b) { return '<strong>' + escapeHtml(b) + '</strong>'; });
-
-    // Italic
-    text = text.replace(/\*(.*?)\*/g, function(m, i) { return '<em>' + escapeHtml(i) + '</em>'; });
-
-    // Strikethrough
-    text = text.replace(/~~(.*?)~~/g, function(m, s) { return '<del>' + escapeHtml(s) + '</del>'; });
-
-    // Badge markers (must be before link processing)
-    text = text.replace(/🌐/g, '<span class="badge-public">🌐 公开</span>');
-    text = text.replace(/🔒/g, '<span class="badge-internal">🔒 内部</span>');
-
-    // Links
-    text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">$1</a>');
-
-    // Unordered lists
-    text = text.replace(/^- (.*)$/gm, '<li>$1</li>');
-    text = text.replace(/^\* (.*)$/gm, '<li>$1</li>');
-
-    // Ordered lists
-    text = text.replace(/^\d+\.\s+(.*)$/gm, function(m, content) {
-        return '<li class="ol-item">' + content + '</li>';
-    });
-
-    // Wrap consecutive <li> in <ul>/<ol>
-    text = text.replace(/((?:<li[^>]*>.*?<\/li>\s*)+)/g, function(match) {
-        // Check if it's an ordered list
-        if (/<li class="ol-item"/.test(match)) {
-            return '<ol>' + match.replace(/ class="ol-item"/g, '') + '</ol>';
-        }
-        return '<ul>' + match + '</ul>';
-    });
-
-    // Restore code blocks
-    text = text.replace(/%%CODEBLOCK(\d+)%%/g, function(m, idx) {
-        return codeBlocks[parseInt(idx)];
-    });
-
-    // Line breaks and paragraphs (after block-level elements)
-    text = text.replace(/\n\n/g, '</p><p>');
-    text = text.replace(/\n/g, '<br>');
-
-    // Remove <br> from inside <ul> and <ol> (they produce invalid HTML)
-    text = text.replace(/(<(ul|ol)>)([\s\S]*?)(<\/(ul|ol)>)/g, function(m, open, tag, body, close) {
-        return open + body.replace(/<br>/g, '') + close;
-    });
-
-    // Wrap everything in paragraphs for consistency, but avoid wrapping block-level elements
-    var blockElements = /^\s*<(h[1-4]|ul|ol|li|pre|blockquote|hr|table|div|p)/;
-    if (!blockElements.test(text.trim())) {
-        text = '<p>' + text + '</p>';
-    } else {
-        // Prepend paragraph for any lead text, and ensure closing paragraph
-        text = '<p>' + text + '</p>';
-    }
-
-    // Clean up empty paragraphs
-    text = text.replace(/<p>\s*<\/p>/g, '');
-
-    // Fix issues with block-level elements inside paragraphs
-    text = text.replace(/<p>\s*(<(h[1-4]|ul|ol|pre|blockquote|hr|table))>/g, '$1>');
-    text = text.replace(/(<\/(h[1-4]|ul|ol|pre|blockquote|table)>)\s*<\/p>/g, '$1');
-
-    // Remove trailing <br> before closing </p>
-    text = text.replace(/<br>\s*<\/p>/g, '</p>');
-    text = text.replace(/<p>\s*<br>/g, '<p>');
-
-    return text;
+function escapeHtml(t) {
+  var d = document.createElement('div'); d.textContent = t; return d.innerHTML;
 }
 
-/* ── History ── */
-function getHistory() {
-    try {
-        return JSON.parse(localStorage.getItem('geolyx_ci_history') || '[]');
-    } catch(e) {
-        return [];
-    }
+function showToast(m, type) {
+  var t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = m;
+  t.className = 'toast ' + (type || '') + ' show';
+  setTimeout(function() { t.className = 'toast ' + (type || ''); }, 2500);
 }
 
-function saveHistory(competitor, intent, report) {
-    var history = getHistory();
-    history.unshift({
-        time: new Date().toISOString(),
-        competitor: competitor,
-        intent: intent,
-        preview: report.substring(0, 120).replace(/[\n\r]+/g, ' ')
-    });
-    if (history.length > 20) history.length = 20;
-    try {
-        localStorage.setItem('geolyx_ci_history', JSON.stringify(history));
-    } catch(e) {
-        // localStorage may be full
-    }
-    renderHistory();
-}
-
-function renderHistory() {
-    var history = getHistory();
-    var container = document.getElementById('historyList');
-
-    if (history.length === 0) {
-        container.innerHTML = '<div class="history-empty">暂无查询历史</div>';
-        return;
-    }
-
-    var parts = [];
-    for (var i = 0; i < history.length; i++) {
-        var h = history[i];
-        var timeStr = '';
-        try {
-            timeStr = new Date(h.time).toLocaleString('zh-CN', {
-                month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-            });
-        } catch(e) {
-            timeStr = h.time || '';
-        }
-        parts.push(
-            '<div class="history-item" role="button" tabindex="0" onclick="restoreHistory(' + i + ')" onkeydown="if(event.key===\'Enter\')restoreHistory(' + i + ')">' +
-            '<div class="h-competitor">' + escapeHtml(h.competitor) + '</div>' +
-            '<div class="h-intent">' + escapeHtml(h.intent || '综合情报报告') + '</div>' +
-            '<div class="h-time">' + escapeHtml(timeStr) + '</div></div>'
-        );
-    }
-    container.innerHTML = parts.join('');
-}
-
-function restoreHistory(index) {
-    var history = getHistory();
-    var h = history[index];
-    if (!h) return;
-
-    document.getElementById('competitorInput').value = h.competitor;
-
-    // Find and activate matching intent tag
-    var tags = document.querySelectorAll('.intent-tag');
-    var found = false;
-    for (var i = 0; i < tags.length; i++) {
-        if (tags[i].getAttribute('data-intent') === h.intent) {
-            for (var j = 0; j < tags.length; j++) tags[j].classList.remove('active');
-            tags[i].classList.add('active');
-            selectedIntent = h.intent;
-            found = true;
-            break;
-        }
-    }
-    if (!found && tags.length > 0) {
-        tags[tags.length - 1].classList.add('active');
-        selectedIntent = tags[tags.length - 1].getAttribute('data-intent');
-    }
-
-    // Close history panel
-    document.getElementById('historyPanel').classList.remove('open');
-    document.getElementById('historyOverlay').classList.remove('open');
-
-    // Auto-search
-    runQuery();
-}
-
-function clearHistory() {
-    localStorage.removeItem('geolyx_ci_history');
-    renderHistory();
-    showToast('历史已清空', 'success');
-}
-
-/* ── Toast ── */
-var toastTimeout = null;
-
-function showToast(msg, type) {
-    var toast = document.getElementById('toast');
-    var icon = toast.querySelector('.toast-icon');
-    var msgEl = toast.querySelector('.toast-msg');
-
-    toast.className = 'toast';
-    if (type === 'error') toast.classList.add('toast-error');
-    else if (type === 'success') toast.classList.add('toast-success');
-
-    icon.textContent = type === 'error' ? '⚠️ ' : type === 'success' ? '✔️ ' : 'ℹ️ ';
-    msgEl.textContent = msg;
-
-    toast.classList.add('show');
-    if (toastTimeout) clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(function() {
-        toast.classList.remove('show');
-    }, 4000);
-}
-
-/* ── Utility ── */
-function escapeHtml(str) {
-    if (!str) return '';
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-}
-
-/* ── Init ── */
-renderHistory();
+// Year
 document.getElementById('currentYear').textContent = new Date().getFullYear();
-</script>
 
+// Nav link section scroll
+document.querySelectorAll('.nav-links a[href="#"]').forEach(function(l) {
+  l.addEventListener('click', function(e) { e.preventDefault(); });
+});
+</script>
 </body>
 </html>
