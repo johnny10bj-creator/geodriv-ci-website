@@ -8,10 +8,10 @@
     <script>if(/aerospace\.geolyxtech\.com/.test(location.hostname)&&location.pathname==="/")location.replace("/aerospace")</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
         /* ═══════════════════════════════════════════
-           GEODRIV CI — Figma Design System v2
+           GEODRIV CI — MRI Design System
            ═══════════════════════════════════════════ */
 
         :root {
@@ -36,59 +36,59 @@
             --r-lg: 12px;
             --r-xl: 16px;
 
-            /* Brand */
-            --brand-blue: #378ADD;
-            --brand-blue-hover: #4A9BEB;
-            --brand-orange: #D85A30;
-            --brand-orange-glow: rgba(216,90,48,0.15);
+            /* Brand — MRI palette */
+            --brand-blue: #1a6fb5;
+            --brand-blue-hover: #2b8fd4;
+            --brand-orange: #e8a317;
+            --brand-orange-glow: rgba(232,163,23,0.15);
         }
 
         /* ═══ Dark Theme (default) ═══ */
         [data-theme="dark"] {
-            --bg-root:         #0F1117;
-            --bg-card:         #161821;
-            --bg-input:        #12141C;
-            --bg-nav:          rgba(15,17,23,0.65);
-            --bg-hover:        #1C1F2A;
-            --bg-modal-overlay:rgba(0,0,0,0.60);
-            --bg-badge:        rgba(55,138,221,0.10);
+            --bg-root:         #081525;
+            --bg-card:         #0d2137;
+            --bg-input:        #0a1a2e;
+            --bg-nav:          rgba(8,21,37,0.75);
+            --bg-hover:        #14375a;
+            --bg-modal-overlay:rgba(0,0,0,0.65);
+            --bg-badge:        rgba(26,111,181,0.10);
 
             --border-subtle:   rgba(255,255,255,0.06);
             --border-card:     rgba(255,255,255,0.08);
             --border-input:    rgba(255,255,255,0.10);
             --border-strong:   rgba(255,255,255,0.14);
 
-            --text-primary:    #EBECF0;
-            --text-secondary:  #8B8FA3;
-            --text-muted:      #5F6376;
-            --text-accent:     #378ADD;
+            --text-primary:    #f8fafc;
+            --text-secondary:  rgba(248,250,252,0.55);
+            --text-muted:      rgba(248,250,252,0.30);
+            --text-accent:     #1a6fb5;
 
             --btn-text:        #FFFFFF;
-            --btn-shadow:      0 0 0 1px rgba(55,138,221,0.3), 0 4px 12px rgba(55,138,221,0.15);
+            --btn-shadow:      0 0 0 1px rgba(26,111,181,0.3), 0 4px 12px rgba(26,111,181,0.15);
         }
 
         /* ═══ Light Theme ═══ */
         [data-theme="light"] {
-            --bg-root:         #F5F6F8;
-            --bg-card:         #FFFFFF;
-            --bg-input:        #F0F1F4;
-            --bg-nav:          rgba(245,246,248,0.65);
-            --bg-hover:        #ECEDF1;
+            --bg-root:         #f4f7fa;
+            --bg-card:         #ffffff;
+            --bg-input:        #e8f4fd;
+            --bg-nav:          rgba(244,247,250,0.75);
+            --bg-hover:        #d6dfe8;
             --bg-modal-overlay:rgba(0,0,0,0.35);
-            --bg-badge:        rgba(55,138,221,0.08);
+            --bg-badge:        rgba(26,111,181,0.08);
 
             --border-subtle:   rgba(0,0,0,0.05);
             --border-card:     rgba(0,0,0,0.08);
             --border-input:    rgba(0,0,0,0.12);
             --border-strong:   rgba(0,0,0,0.16);
 
-            --text-primary:    #14161C;
-            --text-secondary:  #545868;
-            --text-muted:      #8C92A3;
-            --text-accent:     #2162BD;
+            --text-primary:    #0d2137;
+            --text-secondary:  rgba(13,33,55,0.55);
+            --text-muted:      rgba(13,33,55,0.33);
+            --text-accent:     #155d99;
 
             --btn-text:        #FFFFFF;
-            --btn-shadow:      0 0 0 1px rgba(55,138,221,0.2), 0 4px 14px rgba(55,138,221,0.12);
+            --btn-shadow:      0 0 0 1px rgba(26,111,181,0.2), 0 4px 14px rgba(26,111,181,0.12);
         }
 
         /* ═══ Reset ═══ */
@@ -104,6 +104,16 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             transition: background 0.35s, color 0.35s;
+        }
+
+        /* Depth gradient overlay */
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: -1;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(26,111,181,0.05) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 80%, rgba(232,163,23,0.03) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         /* ═══ Nav — 64px glass ═══ */
@@ -220,7 +230,7 @@
         }
 
         .hero h1 {
-            font-family: "Inter", "Noto Sans SC", sans-serif;
+            font-family: "DM Sans", "Noto Sans SC", sans-serif;
             font-size: clamp(2.5rem, 5.5vw, 3.75rem);
             font-weight: 600;
             letter-spacing: -0.025em;
@@ -293,7 +303,7 @@
 
         .section h2,
         .section-alt h2 {
-            font-family: "Inter", "Noto Sans SC", sans-serif;
+            font-family: "DM Sans", "Noto Sans SC", sans-serif;
             font-size: clamp(1.5rem, 2.5vw, 2rem);
             font-weight: 600;
             letter-spacing: -0.015em;
@@ -337,7 +347,7 @@
         }
 
         .card h3 {
-            font-family: "Inter", "Noto Sans SC", sans-serif;
+            font-family: "DM Sans", "Noto Sans SC", sans-serif;
             font-size: 1.0625rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -430,7 +440,7 @@
         }
 
         .process-step h3 {
-            font-family: "Inter", "Noto Sans SC", sans-serif;
+            font-family: "DM Sans", "Noto Sans SC", sans-serif;
             font-size: 1.0625rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -471,7 +481,7 @@
         }
 
         .cta-card h2 {
-            font-family: "Inter", "Noto Sans SC", sans-serif;
+            font-family: "DM Sans", "Noto Sans SC", sans-serif;
             font-size: clamp(1.5rem, 2.5vw, 2rem);
             font-weight: 600;
             letter-spacing: -0.015em;
@@ -588,7 +598,7 @@
         }
 
         .modal-header h2 {
-            font-family: "Inter", "Noto Sans SC", sans-serif;
+            font-family: "DM Sans", "Noto Sans SC", sans-serif;
             font-size: 1.25rem; font-weight: 600;
             color: var(--text-primary);
             transition: color 0.35s;
