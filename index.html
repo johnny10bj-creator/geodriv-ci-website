@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="light dark" />
     <title>GEODRIV — Competitive Intelligence Consultancy</title>
     <script>if(/aerospace\.geolyxtech\.com/.test(location.hostname)&&location.pathname==="/")location.replace("/aerospace")</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -733,7 +733,7 @@
             </a>
             <div class="nav-actions">
                 <button class="lang-btn" type="button" onclick="toggleLanguage()" aria-label="Switch language">中文</button>
-                <button class="theme-btn" type="button" onclick="toggleTheme()" aria-label="Toggle theme" id="themeBtn">☀️</button>
+                <button class="theme-btn" type="button" onclick="toggleTheme()" aria-label="Toggle theme" id="themeBtn">🌙</button>
             </div>
         </div>
     </nav>
@@ -935,8 +935,8 @@
             if (saved === 'light' || saved === 'dark') {
                 html.setAttribute('data-theme', saved);
             } else {
-                // Default: dark
-                html.setAttribute('data-theme', 'dark');
+                // Default: light
+                html.setAttribute('data-theme', 'light');
             }
 
             updateThemeIcon(html.getAttribute('data-theme'));
