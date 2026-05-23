@@ -8,10 +8,10 @@
     <script>if(/aerospace\.geolyxtech\.com/.test(location.hostname)&&location.pathname==="/")location.replace("/aerospace")</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
         /* ═══════════════════════════════════════════
-           GEODRIV CI — MRI Design System
+           GEODRIV CI — Trust & Authority Design
            ═══════════════════════════════════════════ */
 
         :root {
@@ -36,11 +36,11 @@
             --r-lg: 12px;
             --r-xl: 16px;
 
-            /* Brand — MRI palette */
+            /* Brand */
             --brand-blue: #1a6fb5;
             --brand-blue-hover: #2b8fd4;
-            --brand-orange: #e8a317;
-            --brand-orange-glow: rgba(232,163,23,0.15);
+            --brand-orange: #D85A30;
+            --brand-orange-glow: rgba(216,90,48,0.18);
         }
 
         /* ═══ Dark Theme (default) ═══ */
@@ -97,7 +97,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+            font-family: "Source Sans 3", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
             background: var(--bg-root);
             color: var(--text-primary);
             line-height: 1.5;
@@ -230,7 +230,7 @@
         }
 
         .hero h1 {
-            font-family: "DM Sans", "Noto Sans SC", sans-serif;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
             font-size: clamp(2.5rem, 5.5vw, 3.75rem);
             font-weight: 600;
             letter-spacing: -0.025em;
@@ -303,7 +303,7 @@
 
         .section h2,
         .section-alt h2 {
-            font-family: "DM Sans", "Noto Sans SC", sans-serif;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
             font-size: clamp(1.5rem, 2.5vw, 2rem);
             font-weight: 600;
             letter-spacing: -0.015em;
@@ -333,7 +333,8 @@
 
         .card:hover {
             border-color: var(--brand-blue);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 0 0 1px var(--brand-blue);
         }
 
         .card-icon {
@@ -343,11 +344,15 @@
             display: flex; align-items: center; justify-content: center;
             border-radius: var(--r-md);
             background: var(--bg-hover);
-            transition: background 0.35s;
+            transition: background 0.35s, transform 0.25s;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.08);
         }
 
         .card h3 {
-            font-family: "DM Sans", "Noto Sans SC", sans-serif;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
             font-size: 1.0625rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -416,17 +421,24 @@
         }
 
         .process-number {
-            width: 44px; height: 44px;
+            width: 48px; height: 48px;
             border-radius: 50%;
-            background: var(--brand-blue);
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-hover));
             color: var(--btn-text);
-            font-family: "Inter", sans-serif;
-            font-size: 1rem;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
+            font-size: 1.1rem;
             font-weight: 600;
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto var(--ds-20);
+            margin: 0 auto var(--ds-24);
             position: relative;
             z-index: 1;
+            box-shadow: 0 0 20px rgba(26,111,181,0.20);
+            transition: box-shadow 0.3s, transform 0.25s;
+        }
+
+        .process-step:hover .process-number {
+            box-shadow: 0 0 32px rgba(26,111,181,0.35);
+            transform: scale(1.05);
         }
 
         .process-step:not(:last-child) .process-number::after {
@@ -440,7 +452,7 @@
         }
 
         .process-step h3 {
-            font-family: "DM Sans", "Noto Sans SC", sans-serif;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
             font-size: 1.0625rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -481,7 +493,7 @@
         }
 
         .cta-card h2 {
-            font-family: "DM Sans", "Noto Sans SC", sans-serif;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
             font-size: clamp(1.5rem, 2.5vw, 2rem);
             font-weight: 600;
             letter-spacing: -0.015em;
@@ -598,7 +610,7 @@
         }
 
         .modal-header h2 {
-            font-family: "DM Sans", "Noto Sans SC", sans-serif;
+            font-family: "Lexend", "Noto Sans SC", sans-serif;
             font-size: 1.25rem; font-weight: 600;
             color: var(--text-primary);
             transition: color 0.35s;
