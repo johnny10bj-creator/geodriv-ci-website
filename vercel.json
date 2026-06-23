@@ -3,7 +3,9 @@
     { "source": "/feiye-embed", "destination": "/feiye/index.html" },
     { "source": "/feiye/api/dify/:path*", "destination": "/api/feiye/:path*" },
     { "source": "/aerospace/api/:path*", "destination": "/api/aerospace/:path*" },
-    { "source": "/aerospace", "destination": "/aerospace/index.html" }
+    { "source": "/aerospace", "destination": "/aerospace/index.html" },
+    { "source": "/ci", "destination": "/index.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "aerospace.geolyxtech.com" }], "destination": "/aerospace/login.html" }
   ],
   "trailingSlash": false
 }
