@@ -1783,13 +1783,13 @@
     if (savedTheme) {
         applyTheme(savedTheme);
     } else {
-        applyTheme('auto');
+        applyTheme('dark');
     }
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
         var st = localStorage.getItem('geolyx-theme');
         if (!st || st === 'auto') {
-            applyTheme('auto');
+            applyTheme('dark');
         }
     });
 
