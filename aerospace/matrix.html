@@ -8,6 +8,8 @@ body.light tr:hover td{background:#eef3f8}
 .tbtn{background:var(--panel);border:1px solid var(--line);color:var(--txt);padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer;white-space:nowrap}.tbtn:hover{border-color:var(--accent)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;font-size:14px;line-height:1.5}
 .wrap{max-width:1560px;margin:0 auto;padding:24px}
+@media(max-width:1400px){.wrap{padding:20px 16px}}
+@media(max-width:1200px){.wrap table{display:block;overflow-x:auto;max-width:100%}}
 h1{font-size:23px;margin:0 0 4px;font-weight:700}.sub{color:var(--mut);font-size:13px}
 .base{color:var(--accent);font-size:12.5px;margin:6px 0 0}
 .bar{position:sticky;top:0;z-index:20;background:var(--barbg);backdrop-filter:blur(6px);padding:12px 0;border-bottom:1px solid var(--line);margin:16px 0 8px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
@@ -45,7 +47,28 @@ details{background:var(--panel);border:1px solid var(--line);border-radius:10px;
 summary{padding:11px 14px;cursor:pointer;font-weight:600;color:var(--accent)}
 .pnote{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:11px 14px;color:var(--mut);font-size:12.5px;margin:10px 0}
 .src{color:var(--mut);font-size:12px}.foot{color:var(--mut);font-size:11.5px;margin-top:24px;border-top:1px solid var(--line);padding-top:12px}
-</style></head><body><script>if(!sessionStorage.getItem('geolyx_hash'))location.replace('/aerospace/login.html');</script><div class="wrap">
+</style>
+<style id="gx-auth-css">
+#authOverlay{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(ellipse at 50% 30%,rgba(26,111,181,.10) 0%,transparent 60%),#081525;transition:opacity .4s ease,visibility .4s ease;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif}
+#authOverlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#authOverlay::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px;opacity:.25;pointer-events:none}
+#authCard{position:relative;background:linear-gradient(160deg,rgba(26,111,181,.05) 0%,transparent 30%),#0d2137;border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:52px 44px;width:420px;max-width:90vw;box-shadow:0 24px 80px rgba(0,0,0,.55);text-align:center;color:#f8fafc}
+#authCard.shake{animation:gxShake .4s ease}
+@keyframes gxShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.gx-title{font-size:20px;font-weight:700;margin-bottom:6px}
+.gx-brand{font-size:13px;font-weight:500;color:#2b8fd4;letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase}
+.gx-sub{font-size:12px;color:rgba(248,250,252,.45);letter-spacing:.03em;line-height:1.6}
+.gx-sub.mb{margin-bottom:30px}
+#authEmail{width:100%;padding:14px 18px;border:1px solid rgba(255,255,255,.10);border-radius:14px;background:#14375a;color:#f8fafc;font-size:15px;outline:none;margin:6px 0 16px;font-family:inherit}
+#authEmail:focus{border-color:#1a6fb5;box-shadow:0 0 0 4px rgba(26,111,181,.15);background:#06111d}
+#authEmail::placeholder{color:rgba(248,250,252,.33)}
+#authBtn{width:100%;padding:14px;background:linear-gradient(135deg,#1a6fb5 0%,#2b8fd4 100%);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.04em;box-shadow:0 4px 16px rgba(26,111,181,.2);font-family:inherit;transition:transform .2s,box-shadow .2s}
+#authBtn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(26,111,181,.3)}
+#authBtn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+#authError{margin-top:10px;font-size:13px;color:#ff6b7d;min-height:20px}
+.gx-hint{margin-top:14px;font-size:11px;color:rgba(248,250,252,.33)}
+</style>
+</head><body><div id="authOverlay"><div id="authCard"><div class="gx-title">玖之力工业技术</div><div class="gx-brand">GEOLYX</div><div class="gx-sub">航空航天智能装配</div><div class="gx-sub mb">Powered by GEODRIV 爵领科技</div><input type="email" id="authEmail" placeholder="输入授权邮箱地址" maxlength="64" autocomplete="email" aria-label="email"><button id="authBtn" onclick="gxVerify()">验证访问</button><div id="authError" aria-live="polite"></div><div class="gx-hint">仅限指定邮箱访问</div></div></div><div class="wrap">
 <h1>玖之力数据库 - 肯普 / 青岛前哨 / 马头Desoutter / Atlas Copco — 气动工具型号对照矩阵</h1><div class="sub">航空航天气动工具 · 四品牌交叉对照 · 仅气动(电动/EDU已剔除) · 价格基准 2025</div>
 <div class="base">基准：以「肯普航空航天工具目录 2025-11」为基准；前哨/马头/Atlas 有而肯普无的品类一并列出　·　生成：2026-06-23</div>
 <div class="bar"><input id="q" placeholder="🔍 全局模糊搜索 · 跨四张表（型号/品类/关键词,可多词:如 DR 4500、角钻 45、CP44、压铆）…">
@@ -100,4 +123,28 @@ function rA(f){const r=DATA.atlas_rows.filter(x=>fz(f,x.model+x.pno));$("#actabo
 function run(){const f=$("#q").value.trim();const a=rM(f),b=rQ(f),c=rS(f),d=rA(f);$("#cnt").textContent=`对照 ${a}类 · 前哨 ${b} · 马头SOE ${c} · Atlas ${d}`;}
 $("#q").addEventListener("input",run);run();
 $("#theme").addEventListener("click",()=>{document.body.classList.toggle("light");$("#theme").textContent=document.body.classList.contains("light")?"🌙 切黑":"☀️ 切白";});
-</script></body></html>
+</script>
+<script>
+(function(){
+  var H=['871181798f3465b9dbb2180945c3b3784be9b1d2d2da26906e9c70a3e5f4e0be','8d30acdb652e158052d96d127b60989c3a18ae3c5cb3d40bef95ee1782361df0','d18a1b6b6107c2adc6d7fc6514582e6d6991425fdad98a536ee0e93153adc946'];
+  function allowed(){var ex=[];try{ex=JSON.parse(localStorage.getItem('geolyx_extra_emails')||'[]')}catch(e){}var hs=H.slice();for(var i=0;i<ex.length;i++){if(hs.indexOf(ex[i].hash)===-1)hs.push(ex[i].hash)}return hs;}
+  async function sha256(m){var b=new TextEncoder().encode(m);var h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}
+  var ov=document.getElementById('authOverlay');
+  function pass(){if(ov)ov.classList.add('hidden');document.body.style.overflow='';}
+  if(sessionStorage.getItem('geolyx_email')&&sessionStorage.getItem('geolyx_hash')){pass();}
+  else{document.body.style.overflow='hidden';setTimeout(function(){var e=document.getElementById('authEmail');if(e)e.focus();},400);}
+  function shake(c){c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');}
+  window.gxVerify=async function(){
+    var i=document.getElementById('authEmail'),b=document.getElementById('authBtn'),er=document.getElementById('authError'),c=document.getElementById('authCard');
+    var email=(i.value||'').trim().toLowerCase();
+    if(!email){er.textContent="请输入邮箱地址";shake(c);i.focus();return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){er.textContent="邮箱格式不正确";shake(c);i.focus();return;}
+    b.disabled=true;b.textContent="验证中…";er.textContent='';
+    var h=await sha256(email);
+    if(allowed().indexOf(h)!==-1){sessionStorage.setItem('geolyx_email',email);sessionStorage.setItem('geolyx_hash',h);pass();b.disabled=false;b.textContent="验证访问";}
+    else{er.textContent="";b.disabled=false;b.textContent="验证访问";shake(c);setTimeout(function(){i.focus()},100);}
+  };
+  var ie=document.getElementById('authEmail');if(ie)ie.addEventListener('keydown',function(e){if(e.key==='Enter')gxVerify();});
+})();
+</script>
+</body></html>
