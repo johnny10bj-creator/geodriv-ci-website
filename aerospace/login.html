@@ -1388,6 +1388,12 @@
             }
         }
     </style>
+<style id="matrix-embed">
+#mainArea .input-section,#mainArea #loadingOverlay,#mainArea #resultArea,#mainArea .app-footer{display:none!important}
+#mainArea .app-header{border-bottom:none;padding:14px 0 6px;margin-bottom:6px}
+#mainArea .header-text{display:none}
+#matrixFrame{width:100%;height:calc(100vh - 78px);border:none;display:block}
+</style>
 </head>
 <body>
 
@@ -1430,9 +1436,9 @@
                     <div class="user-badge" id="userBadge" style="display:none" onclick="showUserLogins()" title="查看登录记录"></div>
                     <button class="icon-btn" id="adminBtn" onclick="toggleAdminPanel()" title="管理授权邮箱" aria-label="管理授权" style="display:none">&#9881;</button>
                     <button class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="切换主题" aria-label="Toggle theme">🌙</button>
-                    <button class="icon-btn" id="historyToggle" onclick="toggleHistory()" title="查询历史" aria-label="Toggle history">&#9776;</button>
+                    <button class="icon-btn" id="historyToggle" onclick="toggleHistory()" title="查询历史" aria-label="Toggle history">&#9776;</button> <a href="/aerospace/matrix.html" class="icon-btn" title="Matrix">M</a>
                 </div>
-            </header>
+        </header>
 
             <!-- Input Section -->
             <div class="input-section">
@@ -1666,7 +1672,7 @@
     var savedEmail = sessionStorage.getItem('geolyx_email');
     var savedHash = sessionStorage.getItem('geolyx_hash');
     if (savedEmail && savedHash) {
-        document.getElementById('authOverlay').classList.add('hidden');window.location.replace('/aerospace/matrix.html');
+        document.getElementById('authOverlay').classList.add('hidden');window.__mountMatrix&&window.__mountMatrix();
         setTimeout(function() {
             if (isAdmin(savedHash)) document.getElementById('adminBtn').style.display = 'flex';
             showUserBadge(savedEmail);
@@ -1738,7 +1744,7 @@
         if (allowed.indexOf(hash) !== -1) {
             sessionStorage.setItem('geolyx_email', email);
             sessionStorage.setItem('geolyx_hash', hash);
-            document.getElementById('authOverlay').classList.add('hidden');window.location.replace('/aerospace/matrix.html');
+            document.getElementById('authOverlay').classList.add('hidden');window.__mountMatrix&&window.__mountMatrix();
             if (isAdmin(hash)) document.getElementById('adminBtn').style.display = 'flex';
             showUserBadge(email);
             btn.disabled = false;
@@ -2598,5 +2604,16 @@ renderHistory();
 document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
 
+<script>
+window.__mountMatrix=function(){
+  var c=document.querySelector('#mainArea .container');
+  if(c && !document.getElementById('matrixFrame')){
+    var f=document.createElement('iframe');
+    f.id='matrixFrame';f.src='/aerospace/matrix.html';f.setAttribute('title','matrix');
+    c.appendChild(f);
+  }
+};
+if(sessionStorage.getItem('geolyx_hash'))window.__mountMatrix();
+</script>
 </body>
 </html>
