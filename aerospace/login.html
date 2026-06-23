@@ -1744,7 +1744,7 @@
         if (allowed.indexOf(hash) !== -1) {
             sessionStorage.setItem('geolyx_email', email);
             sessionStorage.setItem('geolyx_hash', hash);
-            document.getElementById('authOverlay').classList.add('hidden');window.__mountMatrix&&window.__mountMatrix();
+            document.getElementById('authOverlay').classList.add('hidden');window.location.replace('/aerospace/matrix.html');
             if (isAdmin(hash)) document.getElementById('adminBtn').style.display = 'flex';
             showUserBadge(email);
             btn.disabled = false;
