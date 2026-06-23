@@ -1666,7 +1666,7 @@
     var savedEmail = sessionStorage.getItem('geolyx_email');
     var savedHash = sessionStorage.getItem('geolyx_hash');
     if (savedEmail && savedHash) {
-        document.getElementById('authOverlay').classList.add('hidden');window.location.replace('matrix.html');
+        document.getElementById('authOverlay').classList.add('hidden');window.location.replace('/aerospace/matrix.html');
         setTimeout(function() {
             if (isAdmin(savedHash)) document.getElementById('adminBtn').style.display = 'flex';
             showUserBadge(savedEmail);
@@ -1738,7 +1738,7 @@
         if (allowed.indexOf(hash) !== -1) {
             sessionStorage.setItem('geolyx_email', email);
             sessionStorage.setItem('geolyx_hash', hash);
-            document.getElementById('authOverlay').classList.add('hidden');window.location.replace('matrix.html');
+            document.getElementById('authOverlay').classList.add('hidden');window.location.replace('/aerospace/matrix.html');
             if (isAdmin(hash)) document.getElementById('adminBtn').style.display = 'flex';
             showUserBadge(email);
             btn.disabled = false;
