@@ -50,6 +50,9 @@ summary{padding:11px 14px;cursor:pointer;font-weight:600;color:var(--accent)}
 </style></head><body><script>if(!sessionStorage.getItem('geolyx_hash'))location.replace('/aerospace/login.html');</script><div class="wrap">
 <h1>玖之力数据库 - 肯普 / 青岛前哨 / 马头Desoutter / Atlas Copco — 气动工具型号对照矩阵</h1><div class="sub">航空航天气动工具 · 四品牌交叉对照 · 仅气动(电动/EDU已剔除) · 价格基准 2025</div>
 <div class="base">基准：以「肯普航空航天工具目录 2025-11」为基准；前哨/马头/Atlas 有而肯普无的品类一并列出　·　生成：2026-06-25</div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:6px"><button id="theme" class="tbtn">🌓 黑/白</button></div>
+<div class="bar"><input id="q" placeholder="🔍 全局模糊搜索 · 跨四张表（型号/品类/关键词,可多词:如 DR 4500、角钻 45、CP44、压铆）…">
+<span class="count" id="cnt"></span><div class="legend" id="lg"></div></div>
 <div class="pnote" id="pnote"></div>
 <section><h2>⓪ 横向对比 · 选品类 → 四家并排</h2>
 <select id="hh"></select>
@@ -57,10 +60,7 @@ summary{padding:11px 14px;cursor:pointer;font-weight:600;color:var(--accent)}
 <section><h2>① 覆盖矩阵（四品牌 × 品类）</h2>
 <table class="cov"><thead><tr><th>品类</th><th><span class="chip ck">肯普</span></th><th><span class="chip cq">前哨</span></th><th><span class="chip cm">马头</span></th><th><span class="chip ca">Atlas</span></th></tr></thead><tbody id="covbody"></tbody></table></section>
 <section id="sec-matrix"><h2>② 型号对照明细（含价格·置信度）</h2>
-<div style="display:flex;justify-content:flex-end;margin-bottom:6px"><button id="theme" class="tbtn">🌓 黑/白</button></div>
-<div class="bar"><input id="q" placeholder="🔍 全局模糊搜索 · 跨四张表（型号/品类/关键词,可多词:如 DR 4500、角钻 45、CP44、压铆）…">
-<span class="count" id="cnt"></span><div class="legend" id="lg"></div></div>
-<table>
+<table><thead><tr><th style="width:12%">品类</th><th class="thbench" style="width:18%">★ <span class="chip ck">肯普KEMP</span> 基准 BENCHMARK</th><th style="width:19%"><span class="chip cq">青岛前哨</span> +不含税面价</th><th style="width:21%"><span class="chip cm">马头Desoutter</span> +不含税面价</th><th style="width:16%"><span class="chip ca">Atlas Copco</span> +不含税面价</th><th style="width:14%">备注/规格</th></tr></thead><tbody id="matrix"></tbody></table></section>
 <section id="sec-qs"><h2>③ 青岛前哨 全量价目（254型号·2025不含税面价 ✅）</h2>
 <details><summary>展开/折叠 前哨完整价目表</summary><table><thead><tr><th>#</th><th>型号</th><th>描述</th><th>价(¥)</th><th>备注</th></tr></thead><tbody id="qsbody"></tbody></table></details></section>
 <section id="sec-soe"><h2>④ 马头 Desoutter 整机价目（SOE V24 · 2025 不含税面价·RMB ✅）</h2>
