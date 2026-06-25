@@ -1649,11 +1649,14 @@
         saveLoginHistory(history);
 
         try {
-            var resp = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) });
+            var resp = await fetch('https://myip.ipip.net/json', { signal: AbortSignal.timeout(5000) });
             if (resp.ok) {
                 var geo = await resp.json();
-                record.city = [geo.city, geo.region, geo.country_name].filter(Boolean).join(', ') || '未知';
-                record.ip = geo.ip;
+                if (geo.ret === 'ok') {
+                    var loc = geo.data.location;
+                    record.city = [loc[2], loc[1], loc[0]].filter(Boolean).join(' · ') || '未知';
+                    record.ip = geo.data.ip;
+                }
             }
         } catch(e) {
             record.city = '网络不可达';
