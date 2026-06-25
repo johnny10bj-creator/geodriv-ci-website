@@ -1017,6 +1017,13 @@
             white-space: nowrap;
         }
 
+        .admin-login-item .login-ip {
+            color: var(--text-muted);
+            font-family: "Cascadia Code","Consolas",monospace;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
         .admin-login-item .login-time {
             color: var(--text-muted);
             font-size: 11px;
@@ -1966,6 +1973,7 @@
                 '<div class="admin-login-item">' +
                 '<div class="login-email">' + escapeHtml(h.email) + '</div>' +
                 '<div class="login-city">' + escapeHtml(h.city) + '</div>' +
+                '<div class="login-ip">' + escapeHtml(h.ip || '') + '</div>' +
                 '<div class="login-time">' + escapeHtml(timeStr) + '</div>' +
                 '</div>'
             );
