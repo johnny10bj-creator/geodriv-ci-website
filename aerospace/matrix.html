@@ -101,7 +101,7 @@ function rM(f){const r=DATA.cats.filter(c=>fz(f,JSON.stringify(c)));$("#matrix")
 function rQ(f){const r=DATA.qs_rows.filter(x=>fz(f,x.model+x.desc+x.note));$("#qsbody").innerHTML=r.map(x=>`<tr><td>${x.seq}</td><td><b>${x.model}</b></td><td>${x.desc}</td><td class="price">${x.price}</td><td class="note">${x.note||""}</td></tr>`).join("");return r.length;}
 function rS(f){const r=DATA.soe_rows.filter(x=>fz(f,x.model+x.pno));$("#soebody").innerHTML=r.map(x=>`<tr><td>${x.pno}</td><td><b>${x.model}</b></td><td class="pmatou">¥${x.rmb}</td><td class="note">${x.eur}</td></tr>`).join("");return r.length;}
 function rA(f){const r=DATA.atlas_rows.filter(x=>fz(f,x.model+x.pno));$("#actabody").innerHTML=r.map(x=>`<tr><td>${x.pno}</td><td><b>${x.model}</b></td><td class="patlas">¥${x.cny}</td><td class="note">${x.eur}</td></tr>`).join("");return r.length;}
-function run(){const f=$("#q").value.trim();const a=rM(f),b=rQ(f),c=rS(f),d=rA(f);$("#cnt").textContent=`对照 ${a}类 · 前哨 ${b} · 马头SOE ${c} · Atlas ${d}`;}
+function run(){const f=$("#q").value.trim();const a=rM(f),b=rQ(f),c=rS(f),d=rA(f);$("#cnt").textContent=`对照 ${a}类 · 前哨 ${b} · 马头SOE ${c} · Atlas ${d}`;if(b>0){let e=document.getElementById("sec-qs")?.querySelector("details");if(e)e.open=true;}if(c>0){let e=document.getElementById("sec-soe")?.querySelector("details");if(e)e.open=true;}if(d>0){let e=document.getElementById("sec-atlas")?.querySelector("details");if(e)e.open=true;}}
 $("#q").addEventListener("input",run);run();
 // theme: auto-detect system + manual toggle + localStorage persist
 (function(){var K='gx_mtx_th';function a(t){document.body.classList.toggle('light',t==='light');$('#theme').textContent=t==='light'?'\u{1F319} \u5207\u9ED1':'\u2600\uFE0F \u5207\u767D';}
