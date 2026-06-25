@@ -20,13 +20,13 @@ input#q:focus{border-color:var(--accent)}
 section{margin:22px 0}h2{font-size:15px;color:var(--accent);border-left:3px solid var(--accent);padding-left:9px;margin:0 0 10px}
 table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:10px;overflow:hidden;font-size:13px}
 th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-th{background:var(--panel2);color:var(--mut);font-weight:600;font-size:12px}
-tr:last-child td{border-bottom:none}tr:hover td{background:#1a2130}
+th{background:var(--panel2);color:var(--mut);font-weight:600;font-size:12px}thead{position:sticky;top:0;z-index:5}thead th{position:sticky;top:0;z-index:5;border-top:2px solid transparent}thead th:first-child{border-top:2px solid var(--kemp)}thead th:nth-child(2){border-top:2px solid var(--kemp)}thead th:nth-child(3){border-top:2px solid var(--qs)}thead th:nth-child(4){border-top:2px solid var(--matou)}thead th:nth-child(5){border-top:2px solid var(--atlas)}
+tr:last-child td{border-bottom:none}tr:hover td{background:#1a2130}tr:hover .price{background:rgba(45,209,191,.16);border-color:rgba(45,209,191,.30)}tr:hover .pmatou{background:rgba(239,83,80,.14);border-color:rgba(239,83,80,.26)}tr:hover .patlas{background:rgba(167,139,250,.14);border-color:rgba(167,139,250,.26)}
 .cat{font-weight:700;white-space:nowrap}.spec{color:var(--mut);font-size:11.5px;display:block;margin-top:2px;font-weight:400}
 .b-kemp{border-left:4px solid var(--kemp);background:rgba(240,163,94,.09)}.thbench{background:rgba(240,163,94,.2)!important;color:#f0a35e!important;font-weight:700}.b-qs{border-left:3px solid var(--qs)}.b-matou{border-left:3px solid var(--matou)}.b-atlas{border-left:3px solid var(--atlas)}
-.price{color:#7ee0c8;font-weight:600;font-size:12px;margin-top:3px}
-.pmatou{color:#f7b0ae;font-weight:600;font-size:12px;margin-top:3px}
-.patlas{color:#c4b5fd;font-weight:600;font-size:12px;margin-top:3px}
+.price{color:#7ee0c8;font-weight:700;font-size:13.5px;margin-top:3px;font-family:"Cascadia Code","JetBrains Mono","Consolas",monospace;font-variant-numeric:tabular-nums;display:inline-block;padding:2px 8px;border-radius:5px;background:rgba(45,209,191,.10);border:1px solid rgba(45,209,191,.18);letter-spacing:-.01em}
+.pmatou{color:#f0a09e;font-weight:700;font-size:13.5px;margin-top:3px;font-family:"Cascadia Code","JetBrains Mono","Consolas",monospace;font-variant-numeric:tabular-nums;display:inline-block;padding:2px 8px;border-radius:5px;background:rgba(239,83,80,.08);border:1px solid rgba(239,83,80,.14);letter-spacing:-.01em}
+.patlas{color:#b8a8f0;font-weight:700;font-size:13.5px;margin-top:3px;font-family:"Cascadia Code","JetBrains Mono","Consolas",monospace;font-variant-numeric:tabular-nums;display:inline-block;padding:2px 8px;border-radius:5px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.14);letter-spacing:-.01em}
 .hhgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px}
 .hhcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .hhhead{padding:8px 12px;font-weight:700;font-size:13px;color:#0d1117}
